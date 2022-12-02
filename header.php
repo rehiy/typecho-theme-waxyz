@@ -57,7 +57,7 @@
     <!--local END-->
 
     <!-- 使用url函数转换相关路径 -->
-    <link rel="stylesheet" href="<?php $this->options->themeUrl('css/waxyz.css'); ?>">
+    <link rel="stylesheet" href="<?php $this->options->themeUrl('css/waxyz.css?v2.0.3'); ?>">
 
     <!--代码高亮-->
     <?php if ($this->options->codeHighlightControl) : ?>
