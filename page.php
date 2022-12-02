@@ -9,11 +9,9 @@
                     <header class="post-head">
                         <h1 class="post-title"><?php $this->title() ?></h1>
                         <section class="post-meta"></section>
-                    <div class="post-border"></div>
+                        <div class="post-border"></div>
                     </header>
-
                     <section class="post-content">
-                        <!--?php $this->content(); ?-->
                         <?php echo getContent($this->content); ?>
                     </section>
                     <footer class="post-footer clearfix"></footer>
