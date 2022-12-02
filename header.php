@@ -1,90 +1,24 @@
 <?php if (!defined('__TYPECHO_ROOT_DIR__')) exit; ?>
 <!DOCTYPE HTML>
-<html class="no-js" lang=zh-cmn-Hans>
+<html class="no-js" lang="zh-CN">
 
 <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=<?php $this->options->charset(); ?>">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta http-equiv="Content-Type" content="text/html; charset=<?php $this->options->charset(); ?>" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
     <link rel="shortcut icon" href="<?php $this->options->faviconUrl(); ?>" type="image/x-icon" />
+
+    <!-- title -->
     <title><?php $this->archiveTitle(array(
                 'category'  =>  _t('分类 %s 下的文章'),
                 'search'    =>  _t('包含关键字 %s 的文章'),
                 'tag'       =>  _t('标签 %s 下的文章'),
                 'author'    =>  _t('%s 发布的文章')
             ), '', ' - '); ?><?php $this->options->title(); ?></title>
+    <!-- title END -->
 
     <!-- Loading -->
-    <?php if ($this->options->load_html) : ?>
-        <style type="text/css">
-            .loadingBG {
-                position: fixed;
-                width: 100%;
-                height: 100%;
-                background-color: white;
-                z-index: 99999;
-            }
-
-            .loading {
-                position: relative;
-                width: 85px;
-                height: 40px;
-                margin: -20px auto auto -40px;
-                top: 50%;
-                left: 50%;
-            }
-
-            .loading span {
-                display: inline-block;
-                width: 8px;
-                height: 100%;
-                border-radius: 4px;
-                background: #F09A97;
-                -webkit-animation: load 1s ease infinite;
-            }
-
-            @-webkit-keyframes load {
-                0%,
-                100% {
-                    height: 40px;
-                    background: #F09A97;
-                }
-
-                50% {
-                    height: 70px;
-                    margin: -15px 0;
-                    background: #FF4d40;
-                }
-            }
-
-            .loading span:nth-child(2) {
-                -webkit-animation-delay: 0.2s;
-            }
-
-            .loading span:nth-child(3) {
-                -webkit-animation-delay: 0.4s;
-            }
-
-            .loading span:nth-child(4) {
-                -webkit-animation-delay: 0.6s;
-            }
-
-            .loading span:nth-child(5) {
-                -webkit-animation-delay: 0.8s;
-            }
-        </style>
-        <div id="loading" class="loadingBG">
-            <div class="loading">
-                <span></span>
-                <span></span>
-                <span></span>
-                <span></span>
-                <span></span>
-                <span></span>
-                <span></span>
-            </div>
-        </div>
-    <?php endif; ?>
+    <?php include __DIR__ . '/lib/loading.html'; ?>
     <!-- Loading END -->
 
     <!--staticfile-->
