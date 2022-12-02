@@ -37,6 +37,9 @@
                             <?php $this->tags(' , ', true, 'none'); ?>
                         </div>
                         <div class="pull-right tag-list post-permalink">
+                            <?php if ($this->user->uid == $this->authorId) : ?>
+                                <a href="<?php $this->options->adminUrl(); ?>write-post.php?cid=<?php echo $this->cid; ?>" target="_blank">编辑文章</a> |
+                            <?php endif; ?>
                             最后修改于：<?php echo date('Y年m月d日 H:i', $this->modified); ?>
                         </div>
                     </footer>
