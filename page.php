@@ -12,7 +12,7 @@
                         <div class="post-border"></div>
                     </header>
                     <section class="post-content">
-                        <?php echo getContent($this->content); ?>
+                        <?php echo get_content($this->content); ?>
                     </section>
                     <footer class="post-footer clearfix"></footer>
                 </article>

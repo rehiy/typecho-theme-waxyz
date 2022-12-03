@@ -74,10 +74,9 @@ $this->need('header.php');
             <main class="col-md-8 main-content">
                 <article id="<?php $this->cid() ?>" class="post">
                     <section class="post-content">
-                        <?php echo getContent($this->content); ?>
+                        <?php echo get_content($this->content); ?>
                     </section>
                 </article>
-
                 <div class="about-author clearfix">
                     <?php $this->need('comments.php'); ?>
                 </div>

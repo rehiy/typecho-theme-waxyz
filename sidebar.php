@@ -56,7 +56,7 @@
           </div>
         </div>
         <div class="card-text">
-          <span>已在风雨中度过 <?php echo getBuildTime(); ?></span>
+          <span>已在风雨中度过 <?php echo get_build_time(); ?></span>
         </div>
       </div>
     </div>

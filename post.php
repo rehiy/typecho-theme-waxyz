@@ -15,7 +15,7 @@
                             <span class="author">作者：<a itemprop="name" href="<?php $this->author->permalink(); ?>" rel="author"><?php $this->author(); ?></a></span>
                             <time class="post-date" datetime="<?php $this->date('c'); ?>">时间：<?php $this->date('Y年m月d日'); ?></time>
                             <span class="author">分类：<?php $this->category(','); ?></span>
-                            <span class="author">字数：<?php echo art_count($this->cid); ?></span>
+                            <span class="author">字数：<?php echo mb_strlen($this->content, 'UTF-8'); ?></span>
                             <span class="author">阅读：<?php get_post_view($this) ?></span>
                         </section>
                         <div class="post-border"></div>
@@ -28,7 +28,7 @@
                                 这篇文章距离上次修改已过<?php echo floor($lostTime / 86400); ?>天，其中的内容可能已经有所变动。
                             </div>
                         <?php endif; ?>
-                        <?php echo getContent($this->content); ?>
+                        <?php echo get_content($this->content); ?>
                     </section>
 
                     <footer class="post-footer clearfix">

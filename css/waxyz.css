@@ -276,6 +276,7 @@ th {
 }
 
 /* main-navigation */
+
 .main-navigation {
     text-align: center;
     background: #ffffff;
@@ -290,6 +291,11 @@ th {
     text-align: left;
 }
 
+.main-navigation .menu ul {
+    display: inline-block;
+    padding: 0;
+}
+
 .main-navigation .menu li {
     list-style: none;
     display: inline-block;
@@ -297,7 +303,8 @@ th {
     font-weight: 900;
 }
 
-.main-navigation .menu li.nav-current {
+.main-navigation .menu li.category-active,
+.main-navigation .menu li.category-parent-active {
     border-bottom: 3px solid #f4645f;
     margin-bottom: -2px;
 }
@@ -370,12 +377,14 @@ th {
     background: #f2f2f2;
 }
 
-.main-navigation .menu li ul li.nav-current {
+.main-navigation .menu li ul li.category-active,
+.main-navigation .menu li ul li.category-parent-active {
     border: 0;
     margin: 0;
 }
 
-.main-navigation .menu li ul li.nav-current a {
+.main-navigation .menu li ul li.category-active a,
+.main-navigation .menu li ul li.category-parent-active a {
     color: #f4645f;
 }
 
@@ -385,7 +394,7 @@ th {
     display: none;
 }
 
-.main-navigation .menu li ul li.nav-current ul a {
+.main-navigation .menu li ul li.category-active ul a {
     color: #505050;
 }
 
@@ -453,6 +462,7 @@ th {
 }
 
 /* navbar */
+
 .navbar-header {
     text-align: right;
 }
@@ -1224,6 +1234,7 @@ th {
 }
 
 /*多彩提示框*/
+
 .wrap_hi {
     background-color: #ff9;
     overflow: hidden;
@@ -1243,6 +1254,7 @@ th {
 }
 
 /*收缩框*/
+
 .shrinkBox {
     position: relative;
 }
@@ -1276,6 +1288,7 @@ th {
 }
 
 /*置顶文章*/
+
 .top-article {
     padding: 10px 10px 10px 20px;
     margin-bottom: 10px;
@@ -1329,6 +1342,7 @@ th {
 }
 
 /*置顶公告*/
+
 .top-text {
     padding: 10px 10px 10px 20px;
     margin-bottom: 10px;
@@ -1919,6 +1933,7 @@ th {
 }
 
 /*面包屑导航*/
+
 .tag-cover {
     padding: 0px;
     margin: 0px;
@@ -2092,23 +2107,6 @@ th {
     line-height: 45px;
 }
 
-.table-responsive table {}
-
-.post-content table.vptable ul {
-    margin: 0;
-    padding-left: 10px;
-    line-height: 25px;
-}
-
-.pvtxts span {
-    padding: 2px 4px;
-    font-size: 90%;
-    color: #c7254e;
-    background-color: #f9f2f4;
-    border-radius: 4px;
-    margin-right: 10px;
-}
-
 #comment-form .text,
 #comment-form .textarea {
     width: 100%
@@ -2116,12 +2114,6 @@ th {
 
 #comment-form .submit {
     padding: 7px 20px
-}
-
-@media screen and (max-width: 767px) {
-    .table-responsive {
-        border: 0;
-    }
 }
 
 /*====================================================

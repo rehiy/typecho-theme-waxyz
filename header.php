@@ -57,7 +57,7 @@
     <!--local END-->
 
     <!-- 使用url函数转换相关路径 -->
-    <link rel="stylesheet" href="<?php $this->options->themeUrl('css/waxyz.css?v2.0.3'); ?>">
+    <link rel="stylesheet" href="<?php $this->options->themeUrl('css/waxyz.css?v2.0.4'); ?>">
 
     <!--代码高亮-->
     <?php if ($this->options->codeHighlightControl) : ?>
@@ -68,6 +68,7 @@
     <!--自定义CSS-->
     <?php add_custom_css($this); ?>
     <!--END-->
+
     <!-- 通过自有函数输出HTML头部信息 -->
     <?php $this->header(); ?>
 </head>
@@ -107,146 +108,57 @@
 
                         <div class="collapse navbar-collapse" id="main-menu">
                             <ul class="menu">
-                                <li<?php if ($this->is('index')) : ?> class="nav-current" <?php endif; ?>><a href="<?php $this->options->siteUrl(); ?>"><?php _e('首页'); ?></a></li>
+                                <li <?php if ($this->is('index')) : ?> class="category-active" <?php endif; ?>>
+                                    <a href="<?php $this->options->siteUrl(); ?>"><?php _e('首页'); ?></a>
+                                </li>
 
-                                    <?php $this->widget('Widget_Metas_Category_List')->to($category);
-                                    $lestCategory = null; ?>
+                                <?php $this->widget('Widget_Metas_Category_List', 'current=' . get_category_id($this->getArchiveSlug()))->to($category); ?>
 
-                                    <?php if ($this->options->menuDropdown == 5) : $lestLevel = -1; ?>
-                                        <li><a>分类<span class="caret"></span></a>
-                                            <ul>
-                                                <?php while ($category->next()) : ?>
-                                                    <?php if ($lestLevel == -1) {
-                                                        $lestLevel = $category->levels;
-                                                        $lestSlug = $category->slug;
-                                                        $lestName = $category->name;
-                                                        $lestLink = $category->permalink;
-                                                        continue;
-                                                    }; ?>
-                                                    <?php if ($lestLevel < $category->levels) { ?>
-                                                        <li <?php if ($this->is('category', $lestSlug)) : ?> class="nav-current" <?php endif; ?>><a class="more" href="<?php echo $lestLink; ?>" title="<?php echo $lestName; ?>"><?php echo $lestName; ?></a>
-                                                            <ul>
-                                                            <?php } else { ?>
-                                                                <li <?php if ($this->is('category', $lestSlug)) : ?> class="nav-current" <?php endif; ?>><a href="<?php echo $lestLink; ?>" title="<?php echo $lestName; ?>"><?php echo $lestName; ?></a></li>
-                                                            <?php };   ?>
-                                                            <?php $level = $lestLevel - $category->levels;
-                                                            if ($lestLevel > $category->levels) {
-                                                                $x = (int)$level;
-                                                                while ($x > 0) {
-                                                                    echo "</ul></li>";
-                                                                    $x--;
-                                                                }
-                                                            } ?>
-                                                            <?php $lestLevel = $category->levels;
-                                                            $lestSlug = $category->slug;
-                                                            $lestName = $category->name;
-                                                            $lestLink = $category->permalink; ?>
-                                                        <?php endwhile; ?>
-                                                            </ul>
-                                                        </li>
-                                                    <?php endif; ?>
+                                <!-- 展开分类菜单 -->
+                                <?php
+                                if ($this->options->menuDropdown == 4) {
+                                    $category->listCategories();
+                                } elseif ($this->options->menuDropdown == 2) {
+                                    while ($category->next()) {
+                                ?>
+                                        <li <?php if ($this->is('category', $category->slug)) : ?> class="category-active" <?php endif; ?>>
+                                            <a href="<?php $category->permalink(); ?>" title="<?php $category->name(); ?>"><?php $category->name(); ?></a>
+                                        </li>
+                                <?php
+                                    }
+                                }
+                                ?>
+                                <!-- 展开分类菜单 end -->
 
-                                                    <?php if ($this->options->menuDropdown == 4) : ?>
-                                                        <li><a>分类<span class="caret"></span></a>
-                                                            <ul>
-                                                                <?php while ($category->next()) : ?>
-                                                                    <li <?php if ($this->is('category', $category->slug)) : ?> class="nav-current" <?php endif; ?>><a href="<?php $category->permalink(); ?>" title="<?php $category->name(); ?>"><?php $category->name(); ?></a></li>
-                                                                <?php endwhile; ?>
-                                                            </ul>
-                                                        </li>
-                                                    <?php endif; ?>
+                                <!-- 展开独立页面 -->
+                                <?php
+                                $this->widget('Widget_Contents_Page_List')->to($pages);
+                                while ($pages->next()) {
+                                ?>
+                                    <li <?php if ($this->is('page', $pages->slug)) : ?> class="category-active" <?php endif; ?>>
+                                        <a href="<?php $pages->permalink(); ?>" title="<?php $pages->title(); ?>"><?php $pages->title(); ?></a>
+                                    </li>
+                                <?php } ?>
+                                <!-- 展开独立页面 end -->
 
-                                                    <?php if ($this->options->menuDropdown == 3) : $lestLevel = -1; ?>
-                                                        <?php while ($category->next()) : ?>
-                                                            <?php if ($lestLevel == -1) {
-                                                                $lestLevel = $category->levels;
-                                                                $lestSlug = $category->slug;
-                                                                $lestName = $category->name;
-                                                                $lestLink = $category->permalink;
-                                                                continue;
-                                                            }; ?>
-                                                            <?php if ($lestLevel < $category->levels) { ?>
-                                                                <li <?php if ($this->is('category', $lestSlug)) : ?> class="nav-current" <?php endif; ?>><a <?php if (!$lestLevel == 0) : ?> class="more" <?php endif; ?> href="<?php echo $lestLink; ?>" title="<?php echo $lestName; ?>"><?php echo $lestName; ?><?php if ($lestLevel == 0) : ?><span class="caret"></span><?php endif; ?></a>
-                                                                    <ul>
-                                                                    <?php } else { ?>
-                                                                        <li <?php if ($this->is('category', $lestSlug)) : ?> class="nav-current" <?php endif; ?>><a href="<?php echo $lestLink; ?>" title="<?php echo $lestName; ?>"><?php echo $lestName; ?></a></li>
-                                                                    <?php };   ?>
-                                                                    <?php $level = $lestLevel - $category->levels;
-                                                                    if ($lestLevel > $category->levels) {
-                                                                        $x = (int)$level;
-                                                                        while ($x > 0) {
-                                                                            echo "</ul></li>";
-                                                                            $x--;
-                                                                        }
-                                                                    } ?>
-                                                                    <?php $lestLevel = $category->levels;
-                                                                    $lestSlug = $category->slug;
-                                                                    $lestName = $category->name;
-                                                                    $lestLink = $category->permalink; ?>
-                                                                <?php endwhile; ?>
-                                                            <?php endif; ?>
+                                <!-- 自定义菜单 -->
+                                <?php add_menu_link($this); ?>
+                                <!-- 自定义菜单 end -->
 
-                                                            <?php if ($this->options->menuDropdown == 2) : $lestLevel = -1; ?>
-                                                                <?php while ($category->next()) : ?>
-                                                                    <?php if ($lestLevel == -1) {
-                                                                        $lestLevel = $category->levels;
-                                                                        $lestSlug = $category->slug;
-                                                                        $lestName = $category->name;
-                                                                        $lestLink = $category->permalink;
-                                                                        continue;
-                                                                    }; ?>
-                                                                    <?php if ($lestLevel < $category->levels && $lestLevel == 0) { ?>
-                                                                        <li <?php if ($this->is('category', $lestSlug)) : ?> class="nav-current" <?php endif; ?>><a <?php if (!$lestLevel == 0) : ?> class="more" <?php endif; ?> href="<?php echo  $lestLink; ?>" title="<?php echo $lestName; ?>"><?php echo $lestName; ?><?php if ($lestLevel == 0) : ?><span class="caret"></span><?php endif; ?></a>
-                                                                            <ul>
-                                                                            <?php } else { ?>
-                                                                                <li <?php if ($this->is('category', $lestSlug)) : ?> class="nav-current" <?php endif; ?>><a href="<?php echo $lestLink; ?>" title="<?php echo $lestName; ?>"><?php echo $lestName; ?></a></li>
-                                                                            <?php }   ?>
-                                                                            <?php if ($lestLevel > $category->levels && $category->levels == 0) {
-                                                                                echo "</ul></li>";
-                                                                            }; ?>
-                                                                            <?php $lestLevel = $category->levels;
-                                                                            $lestSlug = $category->slug;
-                                                                            $lestName = $category->name;
-                                                                            $lestLink = $category->permalink; ?>
-                                                                        <?php endwhile; ?>
-                                                                    <?php endif; ?>
+                                <!-- 顶部搜索框 -->
+                                <?php
+                                if ($this->options->navbarSearch) { ?>
+                                    <div class="navbar-form navbar-right navbar-search">
+                                        <form id="search" method="post" action="<?php $this->options->siteUrl(); ?>" role="search">
+                                            <label for="s" class="sr-only"><?php _e('搜索关键字'); ?></label>
+                                            <input type="text" name="s" class="text asearch" placeholder="<?php _e('输入关键字搜索'); ?>" />
+                                            <button type="submit"></button>
+                                        </form>
+                                    </div>
+                                <?php } ?>
+                                <!-- 顶部搜索框 end -->
 
-                                                                    <?php if ($this->options->menuDropdown == 1) : ?>
-                                                                        <?php while ($category->next()) : ?>
-                                                                            <?php if ($category->levels == 0) : ?>
-                                                                                <li <?php if ($this->is('category', $category->slug)) : ?> class="nav-current" <?php endif; ?>><a href="<?php $category->permalink(); ?>" title="<?php $category->name(); ?>"><?php $category->name(); ?></a></li>
-                                                                            <?php endif; ?>
-                                                                        <?php endwhile; ?>
-                                                                    <?php endif; ?>
-
-                                                                    <?php if ($this->options->menuDropdown == 0) : ?>
-                                                                        <?php while ($category->next()) : ?>
-                                                                            <li <?php if ($this->is('category', $category->slug)) : ?> class="nav-current" <?php endif; ?>><a href="<?php $category->permalink(); ?>" title="<?php $category->name(); ?>"><?php $category->name(); ?></a></li>
-                                                                        <?php endwhile; ?>
-                                                                    <?php endif; ?>
-
-                                                                    <?php if ($this->options->pageDropdown) : ?>
-                                                                        <li><a>独立页面<span class="caret"></span></a>
-                                                                            <ul>
-                                                                            <?php endif; ?>
-                                                                            <?php $this->widget('Widget_Contents_Page_List')->to($pages); ?>
-                                                                            <?php while ($pages->next()) : ?>
-                                                                                <li<?php if ($this->is('page', $pages->slug)) : ?> class="nav-current" <?php endif; ?>><a href="<?php $pages->permalink(); ?>" title="<?php $pages->title(); ?>"><?php $pages->title(); ?></a>
-                                                                        </li>
-                                                                    <?php endwhile; ?>
-                                                                    <?php if ($this->options->pageDropdown) : ?>
-                                                                            </ul><?php endif; ?>
-                                                                        <?php add_menu_link($this); ?>
-                                                                        <?php if ($this->options->navbarSearch) : ?>
-                                                                            <div class="navbar-form navbar-right navbar-search">
-                                                                                <form id="search" method="post" action="<?php $this->options->siteUrl(); ?>" role="search">
-                                                                                    <label for="s" class="sr-only"><?php _e('搜索关键字'); ?></label>
-                                                                                    <input type="text" name="s" class="text asearch" placeholder="<?php _e('输入关键字搜索'); ?>" />
-                                                                                    <button type="submit"></button>
-                                                                                </form>
-                                                                            </div>
-                                                                        <?php endif; ?>
-                                                                    </ul>
+                            </ul>
                         </div>
 
                     </div>

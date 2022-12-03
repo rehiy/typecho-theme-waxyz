@@ -5,7 +5,7 @@
         <div class="row">
             <div class="col-sm-12">
                 <span>Copyright &copy; <?php echo date("Y"); ?> <a href="<?php $this->options->siteUrl(); ?>" target="_blank"><?php $this->options->title(); ?></a></span><br />
-                <span>Powered by <a href="http://typecho.org/" target="_blank">Typecho</a> & <a href="https://github.com/rehiy/typecho-theme-waxyz" target="_blank">Waxyz</a> <?php add_ICP($this); ?></span><br />
+                <span>Powered by <a href="http://typecho.org/" target="_blank">Typecho</a> & <a href="https://github.com/rehiy/typecho-theme-waxyz" target="_blank">Waxyz</a> <?php add_icp_code($this); ?></span><br />
             </div>
         </div>
     </div>

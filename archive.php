@@ -34,7 +34,6 @@
                                     <span class="author">作者：<a href="<?php $this->author->permalink(); ?>"><?php $this->author(); ?></a></span>
                                     <time class="post-date" datetime="<?php $this->date('c'); ?>" title="<?php $this->date('Y年m月d日'); ?>">时间：<?php $this->date('Y年m月d日'); ?></time>
                                     <span class="author">分类：<?php $this->category(','); ?></span>
-                                    <!--span class="author">字数：<?php echo art_count($this->cid); ?></span-->
                                     <span class="author">阅读：<?php get_post_view($this) ?></span>
                                 </div>
                                 <div class="post-border"></div>
@@ -43,13 +42,13 @@
                                 <div class="featured-media">
                                     <a href="<?php $this->permalink() ?>"><img src="<?php $this->fields->img(); ?>" alt="<?php $this->title() ?>"></a>
                                 </div>
-                            <?php elseif (getFirstImg($this->content)) : ?>
+                            <?php elseif (get_first_img($this->content)) : ?>
                                 <div class="featured-media">
-                                    <a href="<?php $this->permalink() ?>"><img src="<?php echo getFirstImg($this->content); ?>" alt="<?php $this->title() ?>"></a>
+                                    <a href="<?php $this->permalink() ?>"><img src="<?php echo get_first_img($this->content); ?>" alt="<?php $this->title() ?>"></a>
                                 </div>
                             <?php endif; ?>
                             <div class="post-content">
-                                <?php echo getIndexContent($this->content, $this->permalink); ?>
+                                <?php echo get_content_more($this->content, $this->permalink); ?>
                             </div>
                             <footer class="post-footer clearfix">
                                 <div class="pull-left tag-list">
@@ -75,9 +74,9 @@
                                         <img class="lazyload" src="'<?php $this->options->JQlazyload_gif(); ?>" data-original="<?php $this->fields->img(); ?>" alt="<?php $this->title() ?>" title="<?php $this->title() ?>">
                                     </div>
                                 <?php else : ?>
-                                    <?php if (getFirstImg($this->content)) : ?>
+                                    <?php if (get_first_img($this->content)) : ?>
                                         <div class="excerpt-img">
-                                            <img class="lazyload" src="<?php $this->options->JQlazyload_gif(); ?>" data-original="<?php echo getFirstImg($this->content); ?>" alt="<?php $this->title() ?>" title="<?php $this->title() ?>">
+                                            <img class="lazyload" src="<?php $this->options->JQlazyload_gif(); ?>" data-original="<?php echo get_first_img($this->content); ?>" alt="<?php $this->title() ?>" title="<?php $this->title() ?>">
                                         </div>
                                     <?php endif; ?>
                                 <?php endif; ?>
@@ -95,7 +94,7 @@
                                         <?php if (array_key_exists('info', unserialize($this->___fields()))) {
                                             $this->fields->info();
                                         } else {
-                                            echo getExcerpt($this->text, 75, '');
+                                            echo get_excerpt($this->text, 75, '');
                                         } ?>
                                         <a href="<?php $this->permalink() ?>" style="white-space:nowrap;"> - 阅读更多 - </a>
                                     </div>

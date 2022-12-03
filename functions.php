@@ -1,6 +1,9 @@
 <?php
 if (!defined('__TYPECHO_ROOT_DIR__')) exit;
 
+// 设置时区
+date_default_timezone_set('Asia/Shanghai');
+
 // 主题设置
 function themeConfig($form)
 {
@@ -202,31 +205,15 @@ function themeConfig($form)
     $menuDropdown = new Typecho_Widget_Helper_Form_Element_Radio(
         'menuDropdown',
         array(
-            '6' => '不显示<br/>',
-            '5' => '全部收纳（每级独立列表）<br/>',
-            '4' => '全部收纳（仅一个下拉列表）<br/>',
-            '3' => '部分收纳（展开全部一级分类，收纳子分类，每级独立列表）<br/>',
-            '2' => '部分收纳（展开全部一级分类，收纳子分类，仅一个下拉列表）<br/>',
-            '1' => '全部展开（仅一级分类，不包含子分类）<br/>',
-            '0' => '全部展开（包括子分类）'
+            '0' => '不显示<br/>',
+            '2' => '全部展开（包括子分类）<br/>',
+            '4' => '展开一级分类（收纳子分类，每级独立列表）'
         ),
-        '1',
+        '4',
         _t('分类下拉菜单设置'),
         _t('设置分类下拉菜单的样式')
     );
     $form->addInput($menuDropdown);
-
-    $pageDropdown = new Typecho_Widget_Helper_Form_Element_Radio(
-        'pageDropdown',
-        array(
-            '1' => '开启',
-            '0' => '关闭'
-        ),
-        '0',
-        _t('独立页面下拉菜单设置'),
-        _t('设置是否开启独立页面的下拉菜单')
-    );
-    $form->addInput($pageDropdown);
 
     $menuLink = new Typecho_Widget_Helper_Form_Element_Textarea(
         'menuLink',
@@ -381,8 +368,10 @@ function themeInit($self)
     }
 }
 
+//*************************************************************//
+
 // 文章页内容
-function getContent($content)
+function get_content($content)
 {
     $options = Typecho_Widget::widget('Widget_Options');
     // 短代码
@@ -391,23 +380,15 @@ function getContent($content)
     }
     // 图片功能
     if ($options->picHtmlPrint) {
-        $content = getPicHtml($content);
+        $content = get_pic_html($content);
     }
     return $content;
 }
 
-//首页内容
-function getIndexContent($content, $permalink)
+// 首页内容-more
+function get_content_more($content, $permalink)
 {
-    $options = Typecho_Widget::widget('Widget_Options');
-    // 短代码
-    if ($options->shortcode) {
-        $content = do_shortcode($content);
-    }
-    // 图片功能
-    if ($options->picHtmlPrint) {
-        $content = getPicHtml($content);
-    }
+    $content = get_content($content);
 
     $array = explode('<!--more-->', $content);
 
@@ -426,50 +407,8 @@ function getIndexContent($content, $permalink)
     return $content;
 }
 
-// 图片功能
-function getPicHtml($content)
-{
-    $options = Typecho_Widget::widget('Widget_Options');
-
-    $pattern = '/\<img.*?src\=\"(.*?)\".*?alt\=\"(.*?)\".*?title\=\"(.*?)\"[^>]*>/i';
-    $replacement = '<center><img src="$1" alt="$2" title="$3"><span class="imgtitle">$3<span></center>';
-    // 懒加载
-    if ($options->JQlazyload) {
-        $replacement = '<center><img class="lazyload" src="' . $options->JQlazyload_gif . '" data-original="$1" alt="$2" title="$3"><span class="imgtitle">$3<span></center>';
-    }
-    // 灯箱效果
-    if ($options->fancyboxs) {
-        $replacement = '<center><a data-fancybox="gallery" href="$1"><img  src="$1" alt="$2" title="$3"></a><span class="imgtitle">$3<span></center>';
-    }
-    //all in
-    if ($options->fancyboxs && $options->JQlazyload) {
-        $replacement = '<center><a data-fancybox="gallery" href="$1"><img class="lazyload" src="' . $options->JQlazyload_gif . '" data-original="$1" alt="$2" title="$3"></a><span class="imgtitle">$3<span></center>';
-    }
-    $content = preg_replace($pattern, $replacement, $content);
-
-    return $content;
-}
-
-// 短代码测试
-function getContentTest($content)
-{
-    $pattern = '/\[(info)\](.*?)\[\s*\/\1\s*\]/';
-    $replacement = '<div class="hint hint-info"><span class="glyphicon glyphicon-info-sign hint-info-icon" aria-hidden="true"></span>$2</div>';
-    $content = preg_replace($pattern, $replacement, $content);
-
-    $pattern = '/\[(warning)\](.*?)\[\s*\/\1\s*\]/';
-    $replacement = '<div class="hint hint-warning"><span class="glyphicon glyphicon-question-sign hint-warning-icon" aria-hidden="true"></span>$2</div>';
-    $content = preg_replace($pattern, $replacement, $content);
-
-    $pattern = '/\[(danger)\](.*?)\[\s*\/\1\s*\]/';
-    $replacement = '<div class="hint hint-danger"><span class="glyphicon glyphicon-exclamation-sign hint-danger-icon" aria-hidden="true"></span>$2</div>';
-    $content = preg_replace($pattern, $replacement, $content);
-
-    return $content;
-}
-
 // 摘要格式清理
-function getExcerpt($excerpt, $num, $str)
+function get_excerpt($excerpt, $num, $str)
 {
     $array = explode('<!--more-->', $excerpt);
     $excerpt = $array[0];
@@ -495,8 +434,32 @@ function getExcerpt($excerpt, $num, $str)
     }
 }
 
-//获取文章中第一个图片地址
-function getFirstImg($content)
+// 图片功能
+function get_pic_html($content)
+{
+    $options = Typecho_Widget::widget('Widget_Options');
+
+    $pattern = '/\<img.*?src\=\"(.*?)\".*?alt\=\"(.*?)\".*?title\=\"(.*?)\"[^>]*>/i';
+    $replacement = '<center><img src="$1" alt="$2" title="$3"><span class="imgtitle">$3<span></center>';
+    // 懒加载
+    if ($options->JQlazyload) {
+        $replacement = '<center><img class="lazyload" src="' . $options->JQlazyload_gif . '" data-original="$1" alt="$2" title="$3"><span class="imgtitle">$3<span></center>';
+    }
+    // 灯箱效果
+    if ($options->fancyboxs) {
+        $replacement = '<center><a data-fancybox="gallery" href="$1"><img  src="$1" alt="$2" title="$3"></a><span class="imgtitle">$3<span></center>';
+    }
+    //all in
+    if ($options->fancyboxs && $options->JQlazyload) {
+        $replacement = '<center><a data-fancybox="gallery" href="$1"><img class="lazyload" src="' . $options->JQlazyload_gif . '" data-original="$1" alt="$2" title="$3"></a><span class="imgtitle">$3<span></center>';
+    }
+    $content = preg_replace($pattern, $replacement, $content);
+
+    return $content;
+}
+
+// 获取文章中第一个图片地址
+function get_first_img($content)
 {
     $options = Typecho_Widget::widget('Widget_Options');
     $img_url = '';
@@ -515,50 +478,8 @@ function getFirstImg($content)
     return $img_url;
 }
 
-/**
- * 文章长度
- * @return int
- */
-function art_count($cid)
-{
-    $db = Typecho_Db::get();
-    $rs = $db->fetchRow(
-        $db->select('table.contents.text')->from('table.contents')->where('table.contents.cid=?', $cid)->order('table.contents.cid', Typecho_Db::SORT_ASC)->limit(1)
-    );
-    echo mb_strlen($rs['text'], 'UTF-8');
-}
-
-/**
- * 加载时间
- * @return bool
- */
-function timer_start()
-{
-    global $timestart;
-    $mtime     = explode(' ', microtime());
-    $timestart = $mtime[1] + $mtime[0];
-    return true;
-}
-function timer_stop($display = 0, $precision = 3)
-{
-    global $timestart, $timeend;
-    $mtime     = explode(' ', microtime());
-    $timeend   = $mtime[1] + $mtime[0];
-    $timetotal = number_format($timeend - $timestart, $precision);
-    $r         = $timetotal < 1 ? $timetotal * 1000 . " ms" : $timetotal . " s";
-    if ($display) {
-        echo $r;
-    }
-    return $r;
-}
-
-/**
- * 秒转时间，格式 年 月 日 时 分 秒
- *
- * @author Roogle
- * @return html
- */
-function getBuildTime()
+// 秒转时间，格式 年 月 日 时 分 秒
+function get_build_time()
 {
     $options = Typecho_Widget::widget('Widget_Options');
     $start_Time = $options->startTime;
@@ -600,10 +521,15 @@ function getBuildTime()
     }
 }
 
-/**
- * 阅读统计
- * 调用
- */
+// 获取栏目id
+function get_category_id($slug)
+{
+    $db = Typecho_Db::get();
+    $postnum = $db->fetchRow($db->select()->from('table.metas')->where('slug=?', $slug)->where('type=?', 'category'));
+    return $postnum['mid'];
+}
+
+// 阅读统计
 function get_post_view($archive)
 {
     $cid = $archive->cid;
@@ -621,9 +547,7 @@ function get_post_view($archive)
     echo $row['views'];
 }
 
-/**
- * 文章置顶
- */
+// 文章置顶
 function on_up_post($archive)
 {
     $options = Typecho_Widget::widget('Widget_Options');
@@ -660,9 +584,7 @@ function on_up_post($archive)
     }
 }
 
-/**
- * 公告
- */
+// 显示公告
 function on_top_text($archive)
 {
     $options = Typecho_Widget::widget('Widget_Options');
@@ -677,9 +599,7 @@ function on_top_text($archive)
     }
 }
 
-/**
- * 自定义CSS样式
- */
+// 自定义CSS样式
 function add_custom_css($archive)
 {
     $options = Typecho_Widget::widget('Widget_Options');
@@ -689,9 +609,7 @@ function add_custom_css($archive)
     }
 }
 
-/**
- * 自定义JS样式
- */
+// 自定义JS样式
 function add_custom_js($archive)
 {
     $options = Typecho_Widget::widget('Widget_Options');
@@ -701,10 +619,8 @@ function add_custom_js($archive)
     }
 }
 
-/**
- * ICP备案
- */
-function add_ICP($archive)
+// ICP备案
+function add_icp_code($archive)
 {
     $options = Typecho_Widget::widget('Widget_Options');
     $ICP_text = $options->ICP;
@@ -713,9 +629,7 @@ function add_ICP($archive)
     }
 }
 
-/**
- * 显示友链
- */
+// 显示友链
 function add_links($archive)
 {
     $options = Typecho_Widget::widget('Widget_Options');
@@ -736,9 +650,7 @@ function add_links($archive)
     }
 }
 
-/**
- * 显示自定义链接
- */
+// 显示自定义链接
 function add_menu_link($archive)
 {
     $options = Typecho_Widget::widget('Widget_Options');
@@ -752,9 +664,7 @@ function add_menu_link($archive)
     }
 }
 
-/**
- * 显示社交/分享链接
- */
+// 显示社交/分享链接
 function add_cardlinks($archive)
 {
     $options = Typecho_Widget::widget('Widget_Options');
@@ -769,9 +679,3 @@ function add_cardlinks($archive)
         echo '</div>';
     }
 }
-
-// 启动时间
-timer_start();
-
-// 设置时区
-date_default_timezone_set('Asia/Shanghai');
