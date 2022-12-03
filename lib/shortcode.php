@@ -239,7 +239,6 @@ function do_shortcodes_in_html_tags($content, $ignore_html, $tagnames)
     return $content;
 }
 
-
 function html_split($input)
 {
     return preg_split(get_html_split_regex(), $input, -1, PREG_SPLIT_DELIM_CAPTURE);

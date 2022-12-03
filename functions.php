@@ -535,11 +535,11 @@ function get_post_view($archive)
     $cid = $archive->cid;
     $db = Typecho_Db::get();
     $prefix = $db->getPrefix();
+    // 自动添加统计字段
     if (!array_key_exists('views', $db->fetchRow($db->select()->from('table.contents')))) {
         $db->query('ALTER TABLE `' . $prefix . 'contents` ADD `views` INT(10) DEFAULT 0;');
-        echo 0;
-        return;
     }
+    // 获取并增加阅读数
     $row = $db->fetchRow($db->select('views')->from('table.contents')->where('cid = ?', $cid));
     if ($archive->is('single')) {
         $db->query($db->update('table.contents')->rows(array('views' => (int) $row['views'] + 1))->where('cid = ?', $cid));

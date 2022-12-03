@@ -28,14 +28,12 @@
                         <input type="email" name="mail" id="mail" placeholder="邮件（必填，仅管理员可见，支持Gravatar头像）" class="text form-control" value="<?php $this->remember('mail'); ?>" <?php if ($this->options->commentsRequireMail) : ?> required<?php endif; ?> />
                     </p>
                     <p>
-                        <input type="url" name="url" id="url" class="text form-control" placeholder="<?php _e('您的网址（非必填，请带上http://或https://）'); ?>" value="<?php $this->remember('url'); ?>" <?php if ($this->options->commentsRequireURL) : ?> required<?php endif; ?> />
+                        <input type="url" name="url" id="url" class="text form-control" placeholder="<?php _e('网址（非必填，请带上http://或https://）'); ?>" value="<?php $this->remember('url'); ?>" <?php if ($this->options->commentsRequireURL) : ?> required<?php endif; ?> />
                     </p>
                 <?php endif; ?>
                 <p>
                     <textarea rows="8" cols="50" name="text" id="textarea" class="textarea form-control" placeholder="<?php _e('留下您伟大的看法......'); ?>" required><?php $this->remember('text'); ?></textarea>
                 </p>
-                <p><?php //Captcha_Plugin::output();
-                    ?></p>
                 <p>
                     <button type="submit" class="submit btn btn-lg"><?php _e('提交评论'); ?></button>
                 </p>
