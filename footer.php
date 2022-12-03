@@ -58,7 +58,7 @@
 <?php endif; ?>
 <!--local END-->
 
-<script src="<?php $this->options->themeUrl('js/waxyz.js'); ?>"></script>
+<script src="<?php $this->options->themeUrl('js/waxyz.js?v11'); ?>"></script>
 
 <!--代码高亮-->
 <?php if ($this->options->codeHighlightControl) : ?>
