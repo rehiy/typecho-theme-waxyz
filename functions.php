@@ -425,6 +425,8 @@ function get_excerpt($excerpt, $num, $str)
     $excerpt = preg_replace('/[!]{0,1}\[([\S\s]+?)\]\([\S\s]+?\)/', '$1', $excerpt);
     //分隔符
     $excerpt = preg_replace('/[-|*]+?/', '', $excerpt);
+    //转义HTML
+    $excerpt = htmlentities($excerpt);
 
     //使用mb_substr防止中文截取成乱码，需要开启extension=php_mbstring.dll扩展，一般都开了
     if ($str !== '' || $num !== -1) {
