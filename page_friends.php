@@ -16,7 +16,7 @@ function getFriendsHtml($content)
     if (preg_match('/<table.+<\/table>/iUs', $content, $table)) {
         if (preg_match_all('/<tr><td>(.+)<\/td><\/tr>/iUs', $table[0], $trlist)) {
             $html = [
-                '<ul>'
+                '<ul class="row">'
             ];
             shuffle($trlist[1]);
             foreach ($trlist[1] as $tr) {
@@ -24,7 +24,7 @@ function getFriendsHtml($content)
                 $link = trim(strip_tags($t[1]));
                 $logo = trim(strip_tags($t[2])) ?: 'https://cravatar.cn/avatar/' . md5($link) . '?s=128&d=monsterid';
                 $html[] = '
-                    <li>
+                    <li class="col-sm-12 col-lg-6">
                         <a href="' . $link . '" target="_blank" title="' . $t[3] . '">
                             <img src="' . $logo . '" />
                             <div>
@@ -63,35 +63,33 @@ function getFriendsHtml($content)
     }
 
     .post-content ul li {
-        display: block;
-        transition: all .2s ease 0s;
-        border: 1px solid #DEDEDC;
-        border-radius: 8px;
-        margin-top: 16px;
-    }
-
-    .post-content ul li:hover {
-        box-shadow: rgba(0, 0, 0, .2) 0 1px 3px, rgba(157, 182, 200, .1) 0 1px 20px;
+        margin: 0;
+        padding: 6px;
     }
 
     .post-content ul li a {
         display: flex;
         align-items: center;
-        height: 128px;
+        width: 100%;
+        height: 96px;
+        border: 1px solid #DEDEDC;
+        border-radius: 8px;
+        transition: all .2s ease 0s;
     }
 
     .post-content ul li a:hover {
         text-decoration: none;
+        box-shadow: rgba(0, 0, 0, .2) 0 1px 3px, rgba(157, 182, 200, .1) 0 1px 20px;
     }
 
     .post-content ul li a img {
-        width: 128px;
-        height: 128px;
-        margin-right: 16px;
+        width: 96px;
+        height: 96px;
     }
 
     .post-content ul li a div,
     .post-content ul li a div p {
+        margin: 4px 0 4px 8px;
         overflow: hidden;
         text-overflow: ellipsis;
         white-space: nowrap;
