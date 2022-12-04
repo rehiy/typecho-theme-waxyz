@@ -36,7 +36,7 @@ $(document).ready(function ($) {
     var si = 0;
     $('body').click(function (ev) {
         var x = ev.pageX, y = ev.pageY;
-        var ss = '♪ ♩ ♫ ♬ ♭ € § ¶ ♯'.split(' ');
+        var ss = '♪ ♩ ♫ ♬ ¶ ‖ ♭ ♯ § ∮'.split(' ');
         var $b = $('<b></b>').text(ss[si]);
         si = (si + 1) % ss.length;
         $b.css({
@@ -45,7 +45,7 @@ $(document).ready(function ($) {
             'z-index': 99999999,
             'position': 'absolute',
             'user-select': 'none',
-            'font-size': '2rem',
+            'font-size': 1 + 2 * Math.random() + 'rem',
             'color': 'rgb(' + ~~(255 * Math.random()) + ',' + ~~(255 * Math.random()) + ',' + ~~(255 * Math.random()) + ')'
         });
         $('body').append($b);
