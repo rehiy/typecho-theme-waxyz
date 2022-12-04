@@ -33,8 +33,14 @@ $(document).ready(function () {
 
 // 鼠标点击特效
 $(document).ready(function ($) {
-    var si = 0;
     $('body').click(function (ev) {
+        if (ev.target.tagName != 'A') {
+            show(ev), play();
+        }
+    });
+    // 显示音符
+    var si = 0;
+    function show(ev) {
         var x = ev.pageX, y = ev.pageY;
         var ss = '♪ ♩ ♫ ♬ ¶ ‖ ♭ ♯ § ∮'.split(' ');
         var $b = $('<b></b>').text(ss[si]);
@@ -50,13 +56,12 @@ $(document).ready(function ($) {
         });
         $('body').append($b);
         $b.animate(
-            { 'top': y - 100, 'opacity': 0 },
-            500,
+            { 'top': y - 120, 'opacity': 0 },
+            600,
             function () { $b.remove(); }
         );
-        play();
-    });
-    // 天空之城
+    }
+    // 播放音乐
     var AudioContext = window.AudioContext || window.webkitAudioContext;
     var sheet = '880 987 1046 987 1046 1318 987 659 659 880 784 880 1046 784 659 659 698 659 698 1046 659 1046 1046 1046 987 698 698 987 987 880 987 1046 987 1046 1318 987 659 659 880 784 880 1046 784 659 698 1046 987 1046 1174 1174 1174 1046 1046 880 987 784 880 1046 1174 1318 1174 1318 1567 1046 987 1046 1318 1318 1174 784 784 880 1046 987 1174 1046 784 784 1396 1318 1174 659 1318 1046 1318 1760 1567 1567 1318 1174 1046 1046 1174 1046 1174 1567 1318 1318 1760 1567 1318 1174 1046 1046 1174 1046 1174 987 880 880 987 880'.split(' ');
     var ctx, dom, i = 0, play = function () {
