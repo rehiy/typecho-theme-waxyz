@@ -1,6 +1,10 @@
 <?php
 if (!defined('__TYPECHO_ROOT_DIR__')) exit;
 
+
+// 模板目录
+define('WAXYZ_DIR', '/usr/themes/waxyz/');
+
 // 设置时区
 date_default_timezone_set('Asia/Shanghai');
 
@@ -82,7 +86,7 @@ function themeConfig($form)
     $cardBg = new Typecho_Widget_Helper_Form_Element_Text(
         'cardBg',
         NULL,
-        '/usr/themes/waxyz/img/aside.jpg',
+        WAXYZ_DIR . 'img/aside.jpg',
         _t('关于背景'),
         _t('请填入完整链接（URL），设置关于侧边栏区块的背景（填充模式），建议大于360*170，留空自动关闭')
     );
@@ -165,7 +169,7 @@ function themeConfig($form)
         ),
         '1',
         _t('图片灯箱效果'),
-        _t('是否启用fancybox的图片灯箱效果')
+        _t('是否启用图片灯箱效果（fancybox）')
     );
     $form->addInput($fancyboxs);
 
@@ -184,7 +188,7 @@ function themeConfig($form)
     $JQlazyload_gif = new Typecho_Widget_Helper_Form_Element_Text(
         'JQlazyload_gif',
         NULL,
-        '/usr/themes/waxyz/img/loading.gif',
+        WAXYZ_DIR . 'img/loading.gif',
         _t('懒加载loading图片'),
         _t('设置图片懒加载时的载入图片（gif格式）')
     );
@@ -261,7 +265,7 @@ function themeConfig($form)
     $text_info = new Typecho_Widget_Helper_Form_Element_Textarea(
         'text_info',
         NULL,
-        '<img src="/usr/themes/waxyz/img/loading.gif" title="欢迎关注公众号" alt="欢迎关注公众号" />',
+        '<img src="' . WAXYZ_DIR . 'img/loading.gif" title="欢迎关注公众号" alt="欢迎关注公众号" />',
         _t('自定义侧边栏内容'),
         _t('设置自定义侧边栏显示显示的内容，支持html')
     );
@@ -611,7 +615,7 @@ function add_custom_css($archive)
     }
 }
 
-// 自定义JS样式
+// 自定义JS脚本
 function add_custom_js($archive)
 {
     $options = Typecho_Widget::widget('Widget_Options');
