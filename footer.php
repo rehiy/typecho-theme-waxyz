@@ -97,7 +97,7 @@
 <!--END-->
 
 <!--网站加载动画-->
-<?php if ($this->options->load_html) : ?>
+<?php if ($this->options->loadHtml) : ?>
     <script type="text/javascript">
         $("#loading").fadeOut(500);
     </script>

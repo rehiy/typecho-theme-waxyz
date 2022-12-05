@@ -15,8 +15,8 @@ function themeConfig($form)
         'logoUrl',
         NULL,
         NULL,
-        _t('站点LOGO'),
-        _t('在这里填入一个图片地址（URL）, 用来显示网站LOGO，为空则显示网站标题')
+        _t('站点 LOGO'),
+        _t('在这里填入一个图片地址（URL）, 用来显示网站 LOGO，为空则显示网站标题')
     );
     $form->addInput($logoUrl);
 
@@ -42,19 +42,10 @@ function themeConfig($form)
         'ICP',
         NULL,
         NULL,
-        _t('ICP备案号'),
-        _t('网站ICP备案号，留空关闭')
+        _t('ICP 备案号'),
+        _t('网站 ICP 备案号，留空关闭')
     );
     $form->addInput($ICP);
-
-    $cardImg = new Typecho_Widget_Helper_Form_Element_Text(
-        'cardImg',
-        NULL,
-        NULL,
-        _t('头像'),
-        _t('请填入完整链接（URL），在关于侧边栏中展示')
-    );
-    $form->addInput($cardImg);
 
     $cardName = new Typecho_Widget_Helper_Form_Element_Text(
         'cardName',
@@ -64,6 +55,15 @@ function themeConfig($form)
         _t('在关于侧边栏中展示')
     );
     $form->addInput($cardName);
+
+    $cardImg = new Typecho_Widget_Helper_Form_Element_Text(
+        'cardImg',
+        NULL,
+        NULL,
+        _t('头像'),
+        _t('在关于侧边栏中展示，请填入绝对地址（URL）')
+    );
+    $form->addInput($cardImg);
 
     $cardDescription = new Typecho_Widget_Helper_Form_Element_Text(
         'cardDescription',
@@ -92,8 +92,8 @@ function themeConfig($form)
     );
     $form->addInput($cardBg);
 
-    $load_html = new Typecho_Widget_Helper_Form_Element_Radio(
-        'load_html',
+    $loadHtml = new Typecho_Widget_Helper_Form_Element_Radio(
+        'loadHtml',
         array(
             '1' => '开启',
             '0' => '关闭'
@@ -102,52 +102,70 @@ function themeConfig($form)
         _t('站点加载动画'),
         _t('是否启用等待站点加载完毕的动画')
     );
-    $form->addInput($load_html);
+    $form->addInput($loadHtml);
 
-    $articles_list = new Typecho_Widget_Helper_Form_Element_Radio(
-        'articles_list',
+    $toptext = new Typecho_Widget_Helper_Form_Element_Text(
+        'toptext',
+        NULL,
+        NULL,
+        _t('置顶公告'),
+        _t('置顶公告，留空则关闭')
+    );
+    $form->addInput($toptext);
+
+    $sticky = new Typecho_Widget_Helper_Form_Element_Text(
+        'sticky',
+        NULL,
+        NULL,
+        _t('文章置顶'),
+        _t('置顶的文章cid，多个请用逗号或空格分隔，留空则关闭')
+    );
+    $form->addInput($sticky);
+
+    $indexType = new Typecho_Widget_Helper_Form_Element_Radio(
+        'indexType',
         array(
             '1' => '文章模式',
             '0' => '摘要模式'
         ),
-        '1',
+        '0',
         _t('首页文章展示样式'),
         _t('设置首页文章展示样式')
     );
-    $form->addInput($articles_list);
+    $form->addInput($indexType);
 
-    $find_first_image = new Typecho_Widget_Helper_Form_Element_Radio(
-        'find_first_image',
+    $findFirstImage = new Typecho_Widget_Helper_Form_Element_Radio(
+        'findFirstImage',
         array(
-            '1' => '是',
-            '0' => '否'
+            '1' => '开启',
+            '0' => '关闭'
         ),
         '0',
         _t('自动寻找文章首图'),
-        _t('自动使用文章内第一张图片作为文章首图？')
+        _t('是否自动使用文章内第一张图片作为文章首图')
     );
-    $form->addInput($find_first_image);
+    $form->addInput($findFirstImage);
 
-    $first_image = new Typecho_Widget_Helper_Form_Element_Textarea(
-        'first_image',
+    $firstImages = new Typecho_Widget_Helper_Form_Element_Textarea(
+        'firstImages',
         NULL,
         NULL,
         _t('文章首图'),
         _t('一行一条，随机使用，留空则关闭，权重：文章内定义首图 > 文章内第一张图片（如果启用） > 本处设置')
     );
-    $form->addInput($first_image);
+    $form->addInput($firstImages);
 
-    $shortcode = new Typecho_Widget_Helper_Form_Element_Radio(
-        'shortcode',
+    $shortCode = new Typecho_Widget_Helper_Form_Element_Radio(
+        'shortCode',
         array(
             '1' => '开启',
             '0' => '关闭'
         ),
         '1',
         _t('短代码支持'),
-        _t('是否启用短代码支持，移植的 WordPress 功能')
+        _t('是否启用短代码支持，移植自 WordPress 的功能，一般用于兼容转移过来的文章')
     );
-    $form->addInput($shortcode);
+    $form->addInput($shortCode);
 
     $picHtmlPrint = new Typecho_Widget_Helper_Form_Element_Radio(
         'picHtmlPrint',
@@ -161,8 +179,8 @@ function themeConfig($form)
     );
     $form->addInput($picHtmlPrint);
 
-    $fancyboxs = new Typecho_Widget_Helper_Form_Element_Radio(
-        'fancyboxs',
+    $fancybox = new Typecho_Widget_Helper_Form_Element_Radio(
+        'fancybox',
         array(
             '1' => '开启',
             '0' => '关闭'
@@ -171,10 +189,10 @@ function themeConfig($form)
         _t('图片灯箱效果'),
         _t('是否启用图片灯箱效果（fancybox）')
     );
-    $form->addInput($fancyboxs);
+    $form->addInput($fancybox);
 
-    $JQlazyload = new Typecho_Widget_Helper_Form_Element_Radio(
-        'JQlazyload',
+    $lazyload = new Typecho_Widget_Helper_Form_Element_Radio(
+        'lazyload',
         array(
             '1' => '开启',
             '0' => '关闭'
@@ -183,16 +201,16 @@ function themeConfig($form)
         _t('图片懒加载'),
         _t('是否启用图片懒加载（lazyload）')
     );
-    $form->addInput($JQlazyload);
+    $form->addInput($lazyload);
 
-    $JQlazyload_gif = new Typecho_Widget_Helper_Form_Element_Text(
-        'JQlazyload_gif',
+    $lazyloadGif = new Typecho_Widget_Helper_Form_Element_Text(
+        'lazyloadGif',
         NULL,
         WAXYZ_DIR . 'img/loading.gif',
-        _t('懒加载loading图片'),
+        _t('懒加载占位图'),
         _t('设置图片懒加载时的载入图片（gif格式）')
     );
-    $form->addInput($JQlazyload_gif);
+    $form->addInput($lazyloadGif);
 
     $navbarSearch = new Typecho_Widget_Helper_Form_Element_Radio(
         'navbarSearch',
@@ -238,7 +256,7 @@ function themeConfig($form)
             'ShowRecentPosts' => _t('显示最新文章'),
             'ShowRecentComments' => _t('显示最近回复'),
             'ShowArchive' => _t('显示归档'),
-            'ShowText' => _t('显示自定义侧边栏'),
+            'ShowMySide' => _t('显示自定义侧边栏'),
             'ShowLinks' => _t('显示友情链接'),
             'ShowOther' => _t('显示其它杂项')
         ),
@@ -253,24 +271,23 @@ function themeConfig($form)
     );
     $form->addInput($sidebarBlock->multiMode());
 
-    $text_title = new Typecho_Widget_Helper_Form_Element_Text(
-        'text_title',
+    $mySideTitle = new Typecho_Widget_Helper_Form_Element_Text(
+        'mySideTitle',
         NULL,
         '微信关注',
         _t('自定义侧边栏标题'),
         _t('设置自定义侧边栏显示标题')
     );
-    $form->addInput($text_title);
+    $form->addInput($mySideTitle);
 
-    $text_info = new Typecho_Widget_Helper_Form_Element_Textarea(
-        'text_info',
+    $mySideInfo = new Typecho_Widget_Helper_Form_Element_Textarea(
+        'mySideInfo',
         NULL,
         '<img src="' . WAXYZ_DIR . 'img/loading.gif" title="欢迎关注公众号" alt="欢迎关注公众号" />',
         _t('自定义侧边栏内容'),
         _t('设置自定义侧边栏显示显示的内容，支持html')
     );
-    $form->addInput($text_info);
-
+    $form->addInput($mySideInfo);
 
     $links = new Typecho_Widget_Helper_Form_Element_Textarea(
         'links',
@@ -280,24 +297,6 @@ function themeConfig($form)
         _t('一行一条，字段用半角逗号分隔：网站名称,网站地址,网站图标,网站说明')
     );
     $form->addInput($links);
-
-    $sticky = new Typecho_Widget_Helper_Form_Element_Text(
-        'sticky',
-        NULL,
-        NULL,
-        _t('文章置顶'),
-        _t('置顶的文章cid，多个请用逗号或空格分隔，留空则关闭')
-    );
-    $form->addInput($sticky);
-
-    $toptext = new Typecho_Widget_Helper_Form_Element_Text(
-        'toptext',
-        NULL,
-        NULL,
-        _t('置顶公告'),
-        _t('置顶公告，留空则关闭')
-    );
-    $form->addInput($toptext);
 
     $codeHighlightControl = new Typecho_Widget_Helper_Form_Element_Radio(
         'codeHighlightControl',
@@ -367,7 +366,7 @@ function themeConfig($form)
 function themeInit($self)
 {
     $options = $self->widget('Widget_Options');
-    if ($options->shortcode) {
+    if ($options->shortCode) {
         require_once __DIR__ . '/shortcode.php';
     }
 }
@@ -379,7 +378,7 @@ function get_content($content)
 {
     $options = Typecho_Widget::widget('Widget_Options');
     // 短代码
-    if ($options->shortcode) {
+    if ($options->shortCode) {
         $content = do_shortcode($content);
     }
     // 图片功能
@@ -448,16 +447,16 @@ function get_pic_html($content)
     $pattern = '/\<img.*?src\=\"(.*?)\".*?alt\=\"(.*?)\".*?title\=\"(.*?)\"[^>]*>/i';
     $replacement = '<center><img src="$1" alt="$2" title="$3"><span class="imgtitle">$3<span></center>';
     // 懒加载
-    if ($options->JQlazyload) {
-        $replacement = '<center><img class="lazyload" src="' . $options->JQlazyload_gif . '" data-original="$1" alt="$2" title="$3"><span class="imgtitle">$3<span></center>';
+    if ($options->lazyload) {
+        $replacement = '<center><img class="lazyload" src="' . $options->lazyloadGif . '" data-original="$1" alt="$2" title="$3"><span class="imgtitle">$3<span></center>';
     }
     // 灯箱效果
-    if ($options->fancyboxs) {
+    if ($options->fancybox) {
         $replacement = '<center><a data-fancybox="gallery" href="$1"><img  src="$1" alt="$2" title="$3"></a><span class="imgtitle">$3<span></center>';
     }
     //all in
-    if ($options->fancyboxs && $options->JQlazyload) {
-        $replacement = '<center><a data-fancybox="gallery" href="$1"><img class="lazyload" src="' . $options->JQlazyload_gif . '" data-original="$1" alt="$2" title="$3"></a><span class="imgtitle">$3<span></center>';
+    if ($options->fancybox && $options->lazyload) {
+        $replacement = '<center><a data-fancybox="gallery" href="$1"><img class="lazyload" src="' . $options->lazyloadGif . '" data-original="$1" alt="$2" title="$3"></a><span class="imgtitle">$3<span></center>';
     }
     $content = preg_replace($pattern, $replacement, $content);
 
@@ -469,14 +468,14 @@ function get_first_img($content)
 {
     $options = Typecho_Widget::widget('Widget_Options');
     $img_url = '';
-    if ($options->find_first_image) {
+    if ($options->findFirstImage) {
         preg_match_all('/\<img.*?src\=\"(.*?)\".*?[^>]*>/i', $content, $match);
         if ($match[1][0]) {
             $img_url = $match[1][0];
             return $img_url;
         }
     }
-    $images = $options->first_image;
+    $images = $options->firstImages;
     if ($images) {
         $images_list = explode(PHP_EOL, $images);
         $img_url = $images_list[array_rand($images_list)];

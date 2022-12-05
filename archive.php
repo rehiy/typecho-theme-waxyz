@@ -21,7 +21,7 @@
                 <?php while ($this->next()) : ?>
 
                     <!----全文模式开始----->
-                    <?php if ($this->options->articles_list == 1) : ?>
+                    <?php if ($this->options->indexType == 1) : ?>
                         <article id="<?php $this->cid() ?>" class="post">
                             <?php if (array_key_exists('star', unserialize($this->___fields()))) : ?>
                                 <div class="featured" title="推荐文章">
@@ -63,7 +63,7 @@
                     <?php endif; ?>
 
                     <!----摘要模式开始----->
-                    <?php if ($this->options->articles_list == 0) : ?>
+                    <?php if ($this->options->indexType == 0) : ?>
                         <article id="<?php $this->cid() ?>" class="post" style="padding:25px 10px;">
                             <?php if (array_key_exists('star', unserialize($this->___fields()))) : ?>
                                 <div class="featured" title="推荐文章"> <i class="glyphicon glyphicon-star"></i></div>
@@ -71,12 +71,12 @@
                             <div class="excerpt">
                                 <?php if (array_key_exists('img', unserialize($this->___fields()))) : ?>
                                     <div class="excerpt-img">
-                                        <img class="lazyload" src="'<?php $this->options->JQlazyload_gif(); ?>" data-original="<?php $this->fields->img(); ?>" alt="<?php $this->title() ?>" title="<?php $this->title() ?>">
+                                        <img class="lazyload" src="'<?php $this->options->lazyloadGif; ?>" data-original="<?php $this->fields->img(); ?>" alt="<?php $this->title() ?>" title="<?php $this->title() ?>">
                                     </div>
                                 <?php else : ?>
                                     <?php if (get_first_img($this->content)) : ?>
                                         <div class="excerpt-img">
-                                            <img class="lazyload" src="<?php $this->options->JQlazyload_gif(); ?>" data-original="<?php echo get_first_img($this->content); ?>" alt="<?php $this->title() ?>" title="<?php $this->title() ?>">
+                                            <img class="lazyload" src="<?php $this->options->lazyloadGif; ?>" data-original="<?php echo get_first_img($this->content); ?>" alt="<?php $this->title() ?>" title="<?php $this->title() ?>">
                                         </div>
                                     <?php endif; ?>
                                 <?php endif; ?>
