@@ -22,7 +22,7 @@
                     </header>
 
                     <section class="post-content">
-                        <?php if ($lostTime > $halfyear) : ?>
+                        <?php if ($this->options->lostTime && $lostTime > $halfyear) : ?>
                             <div class="hint hint-warning">
                                 <span class="glyphicon glyphicon-question-sign hint-warning-icon" aria-hidden="true"></span><span class="sr-only">warning:</span>
                                 这篇文章距离上次修改已过<?php echo floor($lostTime / 86400); ?>天，其中的内容可能已经有所变动。

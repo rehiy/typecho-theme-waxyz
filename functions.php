@@ -306,9 +306,21 @@ function themeConfig($form)
         ),
         '0',
         _t('代码高亮'),
-        _t('是否启用代码高亮功能，如需使用其他同类型插件，请关闭此项防止冲突（默认关闭）')
+        _t('是否启用代码高亮功能，如需使用其他同类型插件，请关闭此项防止冲突')
     );
     $form->addInput($codeHighlightControl);
+
+    $lostTime = new Typecho_Widget_Helper_Form_Element_Radio(
+        'lostTime',
+        array(
+            '1' => '开启',
+            '0' => '关闭'
+        ),
+        '0',
+        _t('长期未修改提醒'),
+        _t('是否启用提醒 “这篇文章距离上次修改已过xx天，其中的内容可能已经有所变动”')
+    );
+    $form->addInput($lostTime);
 
     $codeHighlightTheme = new Typecho_Widget_Helper_Form_Element_Radio(
         'codeHighlightTheme',
