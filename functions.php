@@ -65,12 +65,12 @@ function themeConfig($form)
     );
     $form->addInput($cardImg);
 
-    $cardDescription = new Typecho_Widget_Helper_Form_Element_Text(
+    $cardDescription = new Typecho_Widget_Helper_Form_Element_Textarea(
         'cardDescription',
         NULL,
         NULL,
         _t('介绍/一言'),
-        _t('在关于侧边栏中展示')
+        _t('在关于侧边栏中展示，支持 html')
     );
     $form->addInput($cardDescription);
 
@@ -285,7 +285,7 @@ function themeConfig($form)
         NULL,
         '<img src="' . WAXYZ_DIR . 'img/loading.gif" title="欢迎关注公众号" alt="欢迎关注公众号" />',
         _t('自定义侧边栏内容'),
-        _t('设置自定义侧边栏显示显示的内容，支持html')
+        _t('设置自定义侧边栏显示显示的内容，支持 html')
     );
     $form->addInput($mySideInfo);
 
