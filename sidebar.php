@@ -172,18 +172,18 @@
   <?php endif; ?>
   <!-- end Archive widget -->
 
-  <!-- start Text widget -->
+  <!-- start mySide widget -->
   <?php if (!empty($this->options->sidebarBlock) && in_array('ShowMySide', $this->options->sidebarBlock)) : ?>
     <div class="widget">
-      <h4 class="title"><?php $this->options->mySideTitle; ?></h4>
+      <h4 class="title"><?php $this->options->mySideTitle(); ?></h4>
       <div class="content recent-post">
         <div class="recent-single-post" align="center">
-          <?php $this->options->mySideInfo; ?>
+          <?php $this->options->mySideInfo(); ?>
         </div>
       </div>
     </div>
   <?php endif; ?>
-  <!-- end Text widget -->
+  <!-- end mySide widget -->
 
   <!-- start Links widget -->
   <?php if (!empty($this->options->sidebarBlock) && in_array('ShowLinks', $this->options->sidebarBlock)) : ?>

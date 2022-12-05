@@ -71,12 +71,12 @@
                             <div class="excerpt">
                                 <?php if (array_key_exists('img', unserialize($this->___fields()))) : ?>
                                     <div class="excerpt-img">
-                                        <img class="lazyload" src="'<?php $this->options->lazyloadGif; ?>" data-original="<?php $this->fields->img(); ?>" alt="<?php $this->title() ?>" title="<?php $this->title() ?>">
+                                        <img class="lazyload" src="'<?php $this->options->lazyloadGif(); ?>" data-original="<?php $this->fields->img(); ?>" alt="<?php $this->title() ?>" title="<?php $this->title() ?>">
                                     </div>
                                 <?php else : ?>
                                     <?php if (get_first_img($this->content)) : ?>
                                         <div class="excerpt-img">
-                                            <img class="lazyload" src="<?php $this->options->lazyloadGif; ?>" data-original="<?php echo get_first_img($this->content); ?>" alt="<?php $this->title() ?>" title="<?php $this->title() ?>">
+                                            <img class="lazyload" src="<?php $this->options->lazyloadGif(); ?>" data-original="<?php echo get_first_img($this->content); ?>" alt="<?php $this->title() ?>" title="<?php $this->title() ?>">
                                         </div>
                                     <?php endif; ?>
                                 <?php endif; ?>

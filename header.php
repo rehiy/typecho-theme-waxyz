@@ -61,7 +61,7 @@
 
     <!--代码高亮-->
     <?php if ($this->options->codeHighlightControl) : ?>
-        <link rel="stylesheet" type="text/css" href="<?php $this->options->themeUrl('lib/prism/css/'); ?><?php $this->options->codeHighlightTheme(); ?>" />
+        <link rel="stylesheet" type="text/css" href="<?php $this->options->themeUrl('lib/prism/css/') . $this->options->codeHighlightTheme(); ?>" />
     <?php endif; ?>
     <!--END-->
 
