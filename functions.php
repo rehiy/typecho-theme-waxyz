@@ -658,7 +658,7 @@ function add_links($archive)
             echo '<div class="recent-single-post">';
             echo '<a rel="noopener" href="' . $links_text_list[1] . '" title="' . $links_text_list[3] . '" target="_blank" class="post-title">';
             if ($links_text_list[2]) {
-                echo '<img src="' . $links_text_list[2] . '" alt="' . $links_text_list[0] . '" height="32">';
+                echo '<img src="' . $links_text_list[2] . '" alt="' . $links_text_list[0] . '" width="100">';
             }
             echo '<span style="margin-left: 10px;">' . $links_text_list[0] . '</span>';
             echo '</a>';
