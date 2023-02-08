@@ -862,38 +862,27 @@ th {
 
 .post-content h1 {
     font-size: 1.8em;
-    margin: 0.67em 0;
     margin-left: -18px;
-    padding-bottom: 10px;
-    margin-bottom: 25px;
 }
 
 .post-content>h1 {
-    margin-top: 0;
     font-size: 2em;
 }
 
 .post-content h2 {
     font-size: 1.5em;
-    margin: 25px 0;
     margin-left: -10px;
-    padding-bottom: 10px;
-    margin-bottom: 25px;
 }
 
 .post-content h3 {
     font-size: 1.17em;
-    margin: 1em 0;
     margin-left: -6px;
-    padding-bottom: 7px;
-    margin-bottom: 21px;
 }
 
 .post-content h4,
 .post-content h5,
 .post-content h6 {
     font-size: 1em;
-    margin: 1.6em 0 1em 0;
     margin-left: -2px;
 }
 
@@ -990,7 +979,6 @@ th {
 }
 
 .post-content blockquote {
-    margin: 0 0 1.64em 0;
     border-left: 3px solid #f4645f;
     padding-left: 12px;
     color: #666664;
@@ -1191,13 +1179,8 @@ th {
 
 @media (min-width: 1100px) {
     .post-content blockquote {
-        margin-left: -24px;
         padding-left: 20px;
         border-width: 4px;
-    }
-
-    .post-content blockquote blockquote {
-        margin-left: 0;
     }
 
     .post-content figure img {
