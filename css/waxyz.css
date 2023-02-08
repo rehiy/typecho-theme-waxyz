@@ -901,11 +901,6 @@ th {
     font-weight: 500;
 }
 
-.post-content p {
-    margin-top: 0;
-    margin-bottom: 1.46em;
-}
-
 .post-content a {
     word-wrap: break-word;
     -moz-text-decoration-color: rgba(0, 0, 0, 0.4);
