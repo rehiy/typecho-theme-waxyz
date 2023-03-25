@@ -371,7 +371,7 @@ function themeConfig($form)
         NULL,
         NULL,
         _t('多媒体背景地址'),
-        _t('只支持 mp4 格式，一行一个地址，留空则不显示背景视频')
+        _t('支持 jpg,png,gif,mp4 格式，一行一个地址，留空则不显示背景视频')
     );
     $form->addInput($backgroundMedia);
 
@@ -640,10 +640,12 @@ function on_top_text($archive)
 function add_background_media($archive)
 {
     $options = Typecho_Widget::widget('Widget_Options');
-    $list = explode("\n", $options->backgroundMedia);
-    if (!empty($list)) {
-        $background_media = $list[array_rand($list)];
-        include __DIR__ . '/library/background.php';
+    if ($media = trim($options->backgroundMedia)) {
+        $media_list = explode("\n", $media);
+        $media_url = $media_list[array_rand($media_list)];
+        if ($media_url) {
+            include __DIR__ . '/library/background.php';
+        }
     }
 }
 
