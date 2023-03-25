@@ -1,7 +1,6 @@
 <?php
 if (!defined('__TYPECHO_ROOT_DIR__')) exit;
 
-
 // 模板目录
 define('WAXYZ_DIR', '/usr/themes/waxyz/');
 

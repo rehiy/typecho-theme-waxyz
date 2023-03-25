@@ -9,9 +9,7 @@
  * @version     1.0.0
  */
 
- if (!defined('__TYPECHO_ROOT_DIR__')) {
-    exit;
-}
+if (!defined('__TYPECHO_ROOT_DIR__')) exit;
 
 $media_type = pathinfo($media_url, PATHINFO_EXTENSION);
 ?>

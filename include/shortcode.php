@@ -10,9 +10,7 @@
  *
  */
 
-if (!defined('__TYPECHO_ROOT_DIR__')) {
-    exit;
-}
+if (!defined('__TYPECHO_ROOT_DIR__')) exit;
 
 require_once __DIR__ . '/shortcode-lib.php';
 
@@ -57,7 +55,6 @@ function shortcode_panel_lo($atts, $content = '')
     return '<div class="wrap_lo">' . $content . '</div>';
 }
 add_shortcode('lo', 'shortcode_panel_lo');
-
 
 // 代办事项已完成
 function shortcode_panel_check($atts, $content = '')
