@@ -52,9 +52,9 @@
     <!--END-->
 
     <!-- 其他样式 -->
-    <link rel="stylesheet" href="<?php $this->options->themeUrl('assets/hint.min.css'); ?>">
+    <link rel="stylesheet" href="<?php $this->options->themeUrl('library/hint.min.css'); ?>">
     <link rel="stylesheet" href="<?php $this->options->themeUrl('assets/waxyz.css'); ?>">
-    <!--local END-->
+    <!--END-->
 
     <!--自定义头部代码-->
     <?php add_custom_header(); ?>
