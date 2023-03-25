@@ -357,7 +357,6 @@ function themeConfig($form)
         array(
             'local' => _t('本地'),
             'staticfile' => _t('Staticfile'),
-            '75cdn' => _t('75CDN(360)'),
             'bootcss' => _t('Bootcss'),
             'jsdelivr' => _t('jsDelivr'),
         ),

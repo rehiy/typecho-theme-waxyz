@@ -22,15 +22,6 @@
 <?php endif; ?>
 <!--staticfile END-->
 
-<!--75cdn-->
-<?php if (strcmp($this->options->CDN, "75cdn") == 0) : ?>
-    <script src="//lib.baomitu.com/jquery/3.6.1/jquery.min.js"></script>
-    <script src="//lib.baomitu.com/twitter-bootstrap/3.4.1/js/bootstrap.min.js"></script>
-    <script src="//lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js"></script>
-    <script src="//lib.baomitu.com/jquery.lazyload/1.8.4/jquery.lazyload.min.js"></script>
-<?php endif; ?>
-<!--75cdn END-->
-
 <!--bootcss-->
 <?php if (strcmp($this->options->CDN, "bootcss") == 0) : ?>
     <script src="//cdn.bootcdn.net/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
