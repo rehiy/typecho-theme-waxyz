@@ -45,14 +45,16 @@
     <?php endif; ?>
     <!--local END-->
 
-    <!-- 使用url函数转换相关路径 -->
-    <link rel="stylesheet" href="<?php $this->options->themeUrl('assets/waxyz.css?v2.0.4'); ?>">
-
     <!--代码高亮-->
     <?php if ($this->options->codeHighlightControl) : ?>
-        <link rel="stylesheet" type="text/css" href="<?php $this->options->themeUrl('library/prism/css/') . $this->options->codeHighlightTheme(); ?>" />
+        <link rel="stylesheet" href="<?php $this->options->themeUrl('library/prism/css/') . $this->options->codeHighlightTheme(); ?>" />
     <?php endif; ?>
     <!--END-->
+
+    <!-- 其他样式 -->
+    <link rel="stylesheet" href="<?php $this->options->themeUrl('assets/hint.min.css'); ?>">
+    <link rel="stylesheet" href="<?php $this->options->themeUrl('assets/waxyz.css'); ?>">
+    <!--local END-->
 
     <!--自定义头部代码-->
     <?php add_custom_header(); ?>
