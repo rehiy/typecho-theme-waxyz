@@ -83,6 +83,19 @@
 <?php endif; ?>
 <!--END-->
 
+<!--背景视频-->
+<?php if ($this->options->backgroundVideo) : ?>
+    <style>
+        .content-wrap {
+            opacity: 0.9;
+        }
+    </style>
+    <div style="position: fixed; top: 0; z-index: -1000;">
+        <video loop muted autoplay width="auto" type="video/mp4" src="<?php add_background_video($this); ?>"></video>
+    </div>
+<?php endif; ?>
+<!--END-->
+
 <!--置顶文章滚动支持-->
 <?php if (!empty($this->options->sticky) && count(explode(',', strtr($this->options->sticky, ' ', ','))) > 1) : ?>
     <script type="text/javascript">

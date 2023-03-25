@@ -367,6 +367,15 @@ function themeConfig($form)
     );
     $form->addInput($CDN);
 
+    $backgroundVideo = new Typecho_Widget_Helper_Form_Element_Textarea(
+        'backgroundVideo',
+        NULL,
+        NULL,
+        _t('背景视频地址'),
+        _t('只支持 mp4 格式，一行一个地址，留空则不显示背景视频')
+    );
+    $form->addInput($backgroundVideo);
+
     $customHeader = new Typecho_Widget_Helper_Form_Element_Textarea(
         'customHeader',
         NULL,
@@ -629,12 +638,22 @@ function on_top_text($archive)
 }
 
 // 自定义头部代码
+function add_background_video($archive)
+{
+    $options = Typecho_Widget::widget('Widget_Options');
+    $list = explode("\n", $options->backgroundVideo);
+    if (!empty($list)) {
+        echo $list[array_rand($list)];
+    }
+}
+
+// 自定义头部代码
 function add_custom_header($archive)
 {
     $options = Typecho_Widget::widget('Widget_Options');
-    $css_text = $options->customHeader;
-    if (!empty($css_text)) {
-        echo $css_text;
+    $content = $options->customHeader;
+    if (!empty($content)) {
+        echo $content;
     }
 }
 
@@ -642,9 +661,9 @@ function add_custom_header($archive)
 function add_custom_footer($archive)
 {
     $options = Typecho_Widget::widget('Widget_Options');
-    $js_text = $options->customFooter;
-    if (!empty($js_text)) {
-        echo $js_text;
+    $content = $options->customFooter;
+    if (!empty($content)) {
+        echo $content;
     }
 }
 
