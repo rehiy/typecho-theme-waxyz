@@ -9,11 +9,14 @@
  * @version     1.0.0
  */
 
-$media_type = pathinfo($media_url, PATHINFO_EXTENSION);
+ if (!defined('__TYPECHO_ROOT_DIR__')) {
+    exit;
+}
 
+$media_type = pathinfo($media_url, PATHINFO_EXTENSION);
 ?>
 
-<style>
+<style type="text/css">
     .content-wrap {
         opacity: 0.9;
     }

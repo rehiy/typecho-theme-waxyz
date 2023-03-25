@@ -20,8 +20,8 @@ $this->need('header.php');
             <main class="col-md-8 main-content">
 
                 <?php if ($this->is('index')) {
-                    on_top_text($this);
-                    on_up_post($this);
+                    on_top_text();
+                    on_up_post();
                 } ?>
 
                 <?php while ($this->next()) : ?>

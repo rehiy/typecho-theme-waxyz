@@ -10,9 +10,11 @@
  *
  */
 
-if (!defined('__TYPECHO_ROOT_DIR__')) exit;
+if (!defined('__TYPECHO_ROOT_DIR__')) {
+    exit;
+}
 
-require_once __DIR__ . '/library/shortcode.php';
+require_once __DIR__ . '/shortcode-lib.php';
 
 // 一般提示
 function shortcode_panel_info($atts, $content = '')

@@ -371,7 +371,7 @@ function themeConfig($form)
         NULL,
         NULL,
         _t('多媒体背景地址'),
-        _t('支持 jpg,png,gif,mp4 格式，一行一个地址，留空则不显示背景视频')
+        _t('支持 jpg,png,gif,mp4 格式，一行一个地址，留空则不显示背景媒体')
     );
     $form->addInput($backgroundMedia);
 
@@ -395,11 +395,11 @@ function themeConfig($form)
 }
 
 // 加载短代码扩展支持
-function themeInit($self)
+function themeInit()
 {
-    $options = $self->widget('Widget_Options');
+    $options = Typecho_Widget::widget('Widget_Options');
     if ($options->shortCode) {
-        require_once __DIR__ . '/shortcode.php';
+        require_once __DIR__ . '/include/shortcode.php';
     }
 }
 
@@ -585,7 +585,7 @@ function get_post_view($archive)
 }
 
 // 文章置顶
-function on_up_post($archive)
+function on_up_post()
 {
     $options = Typecho_Widget::widget('Widget_Options');
     $sticky = $options->sticky; //置顶的文章cid，按照排序输入, 请以半角逗号或空格分隔
@@ -622,7 +622,7 @@ function on_up_post($archive)
 }
 
 // 显示公告
-function on_top_text($archive)
+function on_top_text()
 {
     $options = Typecho_Widget::widget('Widget_Options');
     $top_text = $options->toptext;
@@ -637,20 +637,20 @@ function on_top_text($archive)
 }
 
 // 自定义头部代码
-function add_background_media($archive)
+function add_background_media()
 {
     $options = Typecho_Widget::widget('Widget_Options');
     if ($media = trim($options->backgroundMedia)) {
         $media_list = explode("\n", $media);
         $media_url = $media_list[array_rand($media_list)];
         if ($media_url) {
-            include __DIR__ . '/library/background.php';
+            include __DIR__ . '/include/background.php';
         }
     }
 }
 
 // 自定义头部代码
-function add_custom_header($archive)
+function add_custom_header()
 {
     $options = Typecho_Widget::widget('Widget_Options');
     $content = $options->customHeader;
@@ -660,7 +660,7 @@ function add_custom_header($archive)
 }
 
 // 自定义尾部代码
-function add_custom_footer($archive)
+function add_custom_footer()
 {
     $options = Typecho_Widget::widget('Widget_Options');
     $content = $options->customFooter;
@@ -670,7 +670,7 @@ function add_custom_footer($archive)
 }
 
 // ICP备案
-function add_icp_code($archive)
+function add_icp_code()
 {
     $options = Typecho_Widget::widget('Widget_Options');
     $ICP_text = $options->ICP;
@@ -680,7 +680,7 @@ function add_icp_code($archive)
 }
 
 // 显示友链
-function add_links($archive)
+function add_links()
 {
     $options = Typecho_Widget::widget('Widget_Options');
     $links = $options->links;
@@ -701,7 +701,7 @@ function add_links($archive)
 }
 
 // 显示自定义链接
-function add_menu_link($archive)
+function add_menu_link()
 {
     $options = Typecho_Widget::widget('Widget_Options');
     $menuLink = $options->menuLink;
@@ -715,7 +715,7 @@ function add_menu_link($archive)
 }
 
 // 显示社交/分享链接
-function add_cardlinks($archive)
+function add_cardlinks()
 {
     $options = Typecho_Widget::widget('Widget_Options');
     $cardlinks = $options->cardlinks;

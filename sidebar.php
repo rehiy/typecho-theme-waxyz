@@ -33,9 +33,7 @@
           <div class="card-info-name"><?php $this->options->cardName(); ?></div>
           <div class="card-info-description"><?php $this->options->cardDescription(); ?></div>
         </div>
-        <!--div class="card-icon"-->
-        <?php add_cardlinks($this); ?>
-        <!--/div-->
+        <?php add_cardlinks(); ?>
         <div class="card-data">
           <?php Typecho_Widget::widget('Widget_Stat')->to($stat); ?>
           <div class="card-data-item">
@@ -191,7 +189,7 @@
       <h4 class="title">友情链接</h4>
       <div class="content recent-post">
         <!-- start Links list -->
-        <?php add_links($this); ?>
+        <?php add_links(); ?>
         <!-- end Links list -->
       </div>
     </div>
