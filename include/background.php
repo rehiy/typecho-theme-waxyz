@@ -21,6 +21,7 @@ $media_type = pathinfo($media_url, PATHINFO_EXTENSION);
     </div>
 
     <style type="text/css">
+        .main-navigation,
         .content-wrap {
             opacity: 0.9;
         }
@@ -35,13 +36,14 @@ $media_type = pathinfo($media_url, PATHINFO_EXTENSION);
 <?php elseif (preg_match('/mp4/i', $media_type)) : ?>
 
     <a class="background-ctrl">
-        <i class="glyphicon glyphicon-log-in"></i>
+        <i class="glyphicon glyphicon-play"></i>
     </a>
     <div class="background-media">
         <video loop muted autoplay width="auto" type="video/mp4" src="<?php echo $media_url; ?>"></video>
     </div>
 
     <style type="text/css">
+        .main-navigation,
         .content-wrap {
             opacity: 0.9;
         }
@@ -61,6 +63,7 @@ $media_type = pathinfo($media_url, PATHINFO_EXTENSION);
             text-align: center;
             border-radius: 6px;
             z-index: 1;
+            display: none;
         }
 
         .background-ctrl:hover {
@@ -78,14 +81,17 @@ $media_type = pathinfo($media_url, PATHINFO_EXTENSION);
     <script type="text/javascript">
         var pictureInPicture = false
         var $btn = document.querySelector('.background-ctrl')
-        var $mda = document.querySelector('.background-media')
+        var $bgm = document.querySelector('.background-media')
         var $mp4 = document.querySelector('.background-media video')
+        $mp4.addEventListener('play', (event) => {
+            $btn.style.display = 'block'
+        });
         $mp4.addEventListener('enterpictureinpicture', (event) => {
-            $mda.style.display = 'none'
+            $bgm.style.display = 'none'
             pictureInPicture = true
         });
         $mp4.addEventListener('leavepictureinpicture', (event) => {
-            $mda.style.display = 'block'
+            $bgm.style.display = 'block'
             pictureInPicture = false
         });
         $btn.addEventListener('click', function() {
