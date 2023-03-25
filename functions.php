@@ -362,7 +362,7 @@ function themeConfig($form)
             'jsdelivr' => _t('jsDelivr'),
         ),
         'local',
-        _t('CDN 设置'),
+        _t('公共资源 CDN'),
         _t('国外建议使用jsDelivr，国内建议使用Bootcss，本地模式纯粹是为了防止CDN挂了的应急方案')
     );
     $form->addInput($CDN);
