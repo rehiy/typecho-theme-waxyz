@@ -65,8 +65,8 @@
     <?php endif; ?>
     <!--END-->
 
-    <!--自定义CSS-->
-    <?php add_custom_css($this); ?>
+    <!--自定义头部代码-->
+    <?php add_custom_header($this); ?>
     <!--END-->
 
     <!-- 通过自有函数输出HTML头部信息 -->

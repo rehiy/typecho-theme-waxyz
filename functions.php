@@ -310,6 +310,18 @@ function themeConfig($form)
     );
     $form->addInput($codeHighlightControl);
 
+    $mouseClickEffects = new Typecho_Widget_Helper_Form_Element_Radio(
+        'mouseClickEffects',
+        array(
+            '1' => '开启',
+            '0' => '关闭'
+        ),
+        '0',
+        _t('鼠标点击特效'),
+        _t('是否启用鼠标点击特效')
+    );
+    $form->addInput($mouseClickEffects);
+
     $lostTime = new Typecho_Widget_Helper_Form_Element_Radio(
         'lostTime',
         array(
@@ -355,23 +367,23 @@ function themeConfig($form)
     );
     $form->addInput($CDN);
 
-    $customCss = new Typecho_Widget_Helper_Form_Element_Textarea(
-        'customCss',
+    $customHeader = new Typecho_Widget_Helper_Form_Element_Textarea(
+        'customHeader',
         NULL,
         NULL,
-        _t('自定义样式/CSS'),
-        _t('不需要 `style` 标签')
+        _t('自定义头部代码'),
+        _t('代码将插入 header 标签结束之前')
     );
-    $form->addInput($customCss);
+    $form->addInput($customHeader);
 
-    $customJs = new Typecho_Widget_Helper_Form_Element_Textarea(
-        'customJs',
+    $customFooter = new Typecho_Widget_Helper_Form_Element_Textarea(
+        'customFooter',
         NULL,
         NULL,
-        _t('自定义脚本/JS'),
-        _t('需要 `script` 标签')
+        _t('自定义尾部代码'),
+        _t('代码将插入 body 标签结束之前')
     );
-    $form->addInput($customJs);
+    $form->addInput($customFooter);
 }
 
 // 加载短代码扩展支持
@@ -616,21 +628,21 @@ function on_top_text($archive)
     }
 }
 
-// 自定义CSS样式
-function add_custom_css($archive)
+// 自定义头部代码
+function add_custom_header($archive)
 {
     $options = Typecho_Widget::widget('Widget_Options');
-    $css_text = $options->customCss;
+    $css_text = $options->customHeader;
     if (!empty($css_text)) {
-        echo '<style type="text/css">' . $css_text . '</style>';
+        echo $css_text;
     }
 }
 
-// 自定义JS脚本
-function add_custom_js($archive)
+// 自定义尾部代码
+function add_custom_footer($archive)
 {
     $options = Typecho_Widget::widget('Widget_Options');
-    $js_text = $options->customJs;
+    $js_text = $options->customFooter;
     if (!empty($js_text)) {
         echo $js_text;
     }

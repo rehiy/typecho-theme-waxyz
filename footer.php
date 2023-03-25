@@ -104,8 +104,8 @@
 <?php endif; ?>
 <!--END-->
 
-<!--自定义JS-->
-<?php add_custom_js($this); ?>
+<!--自定义尾部代码-->
+<?php add_custom_footer($this); ?>
 <!--END-->
 
 <?php $this->footer(); ?>
