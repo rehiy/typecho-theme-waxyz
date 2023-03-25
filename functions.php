@@ -366,14 +366,14 @@ function themeConfig($form)
     );
     $form->addInput($CDN);
 
-    $backgroundVideo = new Typecho_Widget_Helper_Form_Element_Textarea(
-        'backgroundVideo',
+    $backgroundMedia = new Typecho_Widget_Helper_Form_Element_Textarea(
+        'backgroundMedia',
         NULL,
         NULL,
-        _t('背景视频地址'),
+        _t('多媒体背景地址'),
         _t('只支持 mp4 格式，一行一个地址，留空则不显示背景视频')
     );
-    $form->addInput($backgroundVideo);
+    $form->addInput($backgroundMedia);
 
     $customHeader = new Typecho_Widget_Helper_Form_Element_Textarea(
         'customHeader',
@@ -637,12 +637,13 @@ function on_top_text($archive)
 }
 
 // 自定义头部代码
-function add_background_video($archive)
+function add_background_media($archive)
 {
     $options = Typecho_Widget::widget('Widget_Options');
-    $list = explode("\n", $options->backgroundVideo);
+    $list = explode("\n", $options->backgroundMedia);
     if (!empty($list)) {
-        echo $list[array_rand($list)];
+        $background_media = $list[array_rand($list)];
+        include __DIR__ . '/library/background.php';
     }
 }
 
