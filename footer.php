@@ -70,7 +70,7 @@
 
 <!--鼠标特效-->
 <?php if ($this->options->mouseClickEffects) : ?>
-    <script type="text/javascript" src="<?php $this->options->themeUrl('assets/waxyz-mouse.js'); ?>"></script>
+    <script type="text/javascript" src="<?php $this->options->themeUrl('assets/mouse.js'); ?>"></script>
 <?php endif; ?>
 <!--END-->
 
