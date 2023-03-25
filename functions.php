@@ -86,7 +86,7 @@ function themeConfig($form)
     $cardBg = new Typecho_Widget_Helper_Form_Element_Text(
         'cardBg',
         NULL,
-        WAXYZ_DIR . 'img/aside.jpg',
+        WAXYZ_DIR . 'assets/aside.jpg',
         _t('关于背景'),
         _t('请填入完整链接（URL），设置关于侧边栏区块的背景（填充模式），建议大于360*170，留空自动关闭')
     );
@@ -206,7 +206,7 @@ function themeConfig($form)
     $lazyloadGif = new Typecho_Widget_Helper_Form_Element_Text(
         'lazyloadGif',
         NULL,
-        WAXYZ_DIR . 'img/loading.gif',
+        WAXYZ_DIR . 'assets/loading.gif',
         _t('懒加载占位图'),
         _t('设置图片懒加载时的载入图片（gif格式）')
     );
@@ -283,7 +283,7 @@ function themeConfig($form)
     $mySideInfo = new Typecho_Widget_Helper_Form_Element_Textarea(
         'mySideInfo',
         NULL,
-        '<img src="' . WAXYZ_DIR . 'img/loading.gif" title="欢迎关注公众号" alt="欢迎关注公众号" />',
+        '<img src="' . WAXYZ_DIR . 'assets/loading.gif" title="欢迎关注公众号" alt="欢迎关注公众号" />',
         _t('自定义侧边栏内容'),
         _t('设置自定义侧边栏显示显示的内容，支持 html')
     );

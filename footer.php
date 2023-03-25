@@ -51,14 +51,12 @@
 
 <!--local-->
 <?php if (strcmp($this->options->CDN, "local") == 0) : ?>
-    <script src="<?php $this->options->themeUrl('js/jquery.min.js?v3.6.1'); ?>"></script>
-    <script src="<?php $this->options->themeUrl('js/bootstrap.min.js?v3.4.1'); ?>"></script>
-    <script src="<?php $this->options->themeUrl('js/jquery.fancybox.min.js'); ?>"></script>
-    <script src="<?php $this->options->themeUrl('js/jquery.lazyload.min.js'); ?>"></script>
+    <script src="<?php $this->options->themeUrl('library/jquery.min.js?v3.6.1'); ?>"></script>
+    <script src="<?php $this->options->themeUrl('library/jquery.fancybox.min.js'); ?>"></script>
+    <script src="<?php $this->options->themeUrl('library/jquery.lazyload.min.js'); ?>"></script>
+    <script src="<?php $this->options->themeUrl('library/bootstrap.min.js?v3.4.1'); ?>"></script>
 <?php endif; ?>
 <!--local END-->
-
-<script src="<?php $this->options->themeUrl('js/waxyz.js?v17'); ?>"></script>
 
 <!--代码高亮-->
 <?php if ($this->options->codeHighlightControl) : ?>
@@ -71,8 +69,17 @@
             });
         })();
     </script>
-    <script type="text/javascript" src="<?php $this->options->themeUrl('lib/prism/clipboard.min.js'); ?>"></script>
-    <script type="text/javascript" src="<?php $this->options->themeUrl('lib/prism/prism.js'); ?>"></script>
+    <script type="text/javascript" src="<?php $this->options->themeUrl('library/prism/clipboard.min.js'); ?>"></script>
+    <script type="text/javascript" src="<?php $this->options->themeUrl('library/prism/prism.js'); ?>"></script>
+<?php endif; ?>
+<!--END-->
+
+<!--公共脚本-->
+<script src="<?php $this->options->themeUrl('assets/waxyz.js?v17'); ?>"></script>
+
+<!--鼠标特效-->
+<?php if ($this->options->mouseClickEffects) : ?>
+    <script type="text/javascript" src="<?php $this->options->themeUrl('assets/waxyz-mouse.js'); ?>"></script>
 <?php endif; ?>
 <!--END-->
 

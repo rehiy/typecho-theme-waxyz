@@ -18,7 +18,7 @@
     <!-- title END -->
 
     <!-- Loading -->
-    <?php include __DIR__ . '/lib/loading.html'; ?>
+    <?php include __DIR__ . '/library/loading.html'; ?>
     <!-- Loading END -->
 
     <!--staticfile-->
@@ -51,17 +51,17 @@
 
     <!--local-->
     <?php if (strcmp($this->options->CDN, "local") == 0) : ?>
-        <link rel="stylesheet" href="<?php $this->options->themeUrl('css/bootstrap.min.css?v3.4.1'); ?>">
-        <link rel="stylesheet" href="<?php $this->options->themeUrl('css/jquery.fancybox.min.css'); ?>">
+        <link rel="stylesheet" href="<?php $this->options->themeUrl('library/bootstrap.min.css?v3.4.1'); ?>">
+        <link rel="stylesheet" href="<?php $this->options->themeUrl('library/jquery.fancybox.min.css'); ?>">
     <?php endif; ?>
     <!--local END-->
 
     <!-- 使用url函数转换相关路径 -->
-    <link rel="stylesheet" href="<?php $this->options->themeUrl('css/waxyz.css?v2.0.4'); ?>">
+    <link rel="stylesheet" href="<?php $this->options->themeUrl('assets/waxyz.css?v2.0.4'); ?>">
 
     <!--代码高亮-->
     <?php if ($this->options->codeHighlightControl) : ?>
-        <link rel="stylesheet" type="text/css" href="<?php $this->options->themeUrl('lib/prism/css/') . $this->options->codeHighlightTheme(); ?>" />
+        <link rel="stylesheet" type="text/css" href="<?php $this->options->themeUrl('library/prism/css/') . $this->options->codeHighlightTheme(); ?>" />
     <?php endif; ?>
     <!--END-->
 
