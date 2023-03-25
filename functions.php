@@ -365,6 +365,18 @@ function themeConfig($form)
     );
     $form->addInput($CDN);
 
+    $backgroundIndex = new Typecho_Widget_Helper_Form_Element_Radio(
+        'backgroundIndex',
+        array(
+            '1' => '仅首页',
+            '0' => '所有页面'
+        ),
+        '0',
+        _t('多媒体背景显示'),
+        _t('是否仅在首页显示多媒体背景')
+    );
+    $form->addInput($backgroundIndex);
+
     $backgroundMedia = new Typecho_Widget_Helper_Form_Element_Textarea(
         'backgroundMedia',
         NULL,
@@ -566,9 +578,9 @@ function get_category_id($slug)
 }
 
 // 阅读统计
-function get_post_view($archive)
+function get_post_view($self)
 {
-    $cid = $archive->cid;
+    $cid = $self->cid;
     $db = Typecho_Db::get();
     $prefix = $db->getPrefix();
     // 自动添加统计字段
@@ -577,7 +589,7 @@ function get_post_view($archive)
     }
     // 获取并增加阅读数
     $row = $db->fetchRow($db->select('views')->from('table.contents')->where('cid = ?', $cid));
-    if ($archive->is('single')) {
+    if ($self->is('single')) {
         $db->query($db->update('table.contents')->rows(array('views' => (int) $row['views'] + 1))->where('cid = ?', $cid));
     }
     echo $row['views'];
@@ -636,9 +648,12 @@ function on_top_text()
 }
 
 // 自定义头部代码
-function add_background_media()
+function add_background_media($self)
 {
     $options = Typecho_Widget::widget('Widget_Options');
+    if ($options->backgroundIndex == 1 && !$self->is('index')) {
+        return; // 仅首页显示
+    }
     if ($media = trim($options->backgroundMedia)) {
         $media_list = explode("\n", $media);
         $media_url = $media_list[array_rand($media_list)];

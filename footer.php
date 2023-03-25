@@ -103,7 +103,7 @@
 <!--END-->
 
 <!--多媒体背景-->
-<?php add_background_media(); ?>
+<?php add_background_media($this); ?>
 <!--END-->
 
 <!--自定义尾部代码-->
