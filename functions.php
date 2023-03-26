@@ -354,10 +354,9 @@ function themeConfig($form)
     $CDN = new Typecho_Widget_Helper_Form_Element_Radio(
         'CDN',
         array(
-            'local' => _t('本地'),
-            'staticfile' => _t('Staticfile'),
-            'bootcss' => _t('Bootcss'),
-            'jsdelivr' => _t('jsDelivr'),
+            '' => _t('本地'),
+            'cdnjs.cloudflare.com' => _t('cdnjs.cloudflare.com'),
+            'cdn.bootcdn.net' => _t('cdn.bootcdn.net'),
         ),
         'local',
         _t('公共资源 CDN'),
@@ -368,7 +367,7 @@ function themeConfig($form)
     $backgroundIndex = new Typecho_Widget_Helper_Form_Element_Radio(
         'backgroundIndex',
         array(
-            '0' => '所有',
+            '0' => '全部',
             '1' => '仅首页',
             '2' => '首页及分类页'
         ),

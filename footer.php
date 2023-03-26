@@ -13,41 +13,18 @@
 
 <a class="back-to-top"><i class="glyphicon glyphicon-menu-up"></i></a>
 
-<!--staticfile-->
-<?php if (strcmp($this->options->CDN, "staticfile") == 0) : ?>
-    <script src="//cdn.staticfile.org/jquery/3.6.1/jquery.min.js"></script>
-    <script src="//cdn.staticfile.org/twitter-bootstrap/3.4.1/js/bootstrap.min.js"></script>
-    <script src="//cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.js"></script>
-    <script src="//cdn.staticfile.org/jquery_lazyload/1.8.4/jquery.lazyload.min.js"></script>
-<?php endif; ?>
-<!--staticfile END-->
-
-<!--bootcss-->
-<?php if (strcmp($this->options->CDN, "bootcss") == 0) : ?>
-    <script src="//cdn.bootcdn.net/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
-    <script src="//cdn.bootcdn.net/ajax/libs/twitter-bootstrap/3.4.1/js/bootstrap.min.js"></script>
-    <script src="//cdn.bootcdn.net/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.js"></script>
-    <script src="//cdn.bootcdn.net/ajax/libs/jquery_lazyload/1.9.7/jquery.lazyload.min.js"></script>
-<?php endif; ?>
-<!--bootcss END-->
-
-<!--jsdelivr-->
-<?php if (strcmp($this->options->CDN, "jsdelivr") == 0) : ?>
-    <script src="//cdn.jsdelivr.net/gh/jquery/jquery@3.6.1/dist/jquery.min.js"></script>
-    <script src="//cdn.jsdelivr.net/npm/bootstrap@3.4.1/dist/js/bootstrap.min.js"></script>
-    <script src="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script>
-    <script src="//cdn.jsdelivr.net/npm/lazyload@1.8.4/jquery.lazyload.min.js"></script>
-<?php endif; ?>
-<!--jsdelivr END-->
-
-<!--local-->
-<?php if (strcmp($this->options->CDN, "local") == 0) : ?>
+<!--Library-->
+<?php if ($this->options->CDN == "") : ?>
     <script src="<?php $this->options->themeUrl('library/jquery.min.js?v3.6.1'); ?>"></script>
     <script src="<?php $this->options->themeUrl('library/jquery.fancybox.min.js'); ?>"></script>
     <script src="<?php $this->options->themeUrl('library/jquery.lazyload.min.js'); ?>"></script>
     <script src="<?php $this->options->themeUrl('library/bootstrap.min.js?v3.4.1'); ?>"></script>
+<?php else : ?>
+    <script src="//<?php echo $this->options->CDN; ?>/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+    <script src="//<?php echo $this->options->CDN; ?>/ajax/libs/twitter-bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <script src="//<?php echo $this->options->CDN; ?>/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.js"></script>
+    <script src="//<?php echo $this->options->CDN; ?>/ajax/libs/jquery_lazyload/1.9.7/jquery.lazyload.min.js"></script>
 <?php endif; ?>
-<!--local END-->
 
 <!--代码高亮-->
 <?php if ($this->options->codeHighlightControl) : ?>
@@ -64,7 +41,6 @@
     <script type="text/javascript" src="<?php $this->options->themeUrl('library/prism/clipboard.min.js'); ?>"></script>
     <script type="text/javascript" src="<?php $this->options->themeUrl('library/prism/prism.js'); ?>"></script>
 <?php endif; ?>
-<!--END-->
 
 <!--公共脚本-->
 <script src="<?php $this->options->themeUrl('assets/global.js?v17'); ?>"></script>
@@ -73,7 +49,6 @@
 <?php if ($this->options->mouseClickEffects) : ?>
     <script type="text/javascript" src="<?php $this->options->themeUrl('assets/mouse.js'); ?>"></script>
 <?php endif; ?>
-<!--END-->
 
 <!--置顶文章滚动支持-->
 <?php if (!empty($this->options->sticky) && count(explode(',', strtr($this->options->sticky, ' ', ','))) > 1) : ?>
@@ -90,7 +65,6 @@
         }, 2000);
     </script>
 <?php endif; ?>
-<!--END-->
 
 <!--网站加载动画-->
 <?php if ($this->options->loadHtml) : ?>
@@ -98,15 +72,12 @@
         $("#loading").fadeOut(500);
     </script>
 <?php endif; ?>
-<!--END-->
 
 <!--多媒体背景-->
 <?php add_background_media($this); ?>
-<!--END-->
 
 <!--自定义尾部代码-->
 <?php add_custom_footer(); ?>
-<!--END-->
 
 <?php $this->footer(); ?>
 </body>
