@@ -28,11 +28,13 @@
 
 ### 近期更新摘要
 
+- 适配高分屏
+
 - 优化代码可读性
 
-- 重写友情链接单页
-
 - 修复一些样式问题
+
+- 重写友情链接单页
 
 - 使用系统分页管理器
 
@@ -44,17 +46,17 @@
 
 - 鼠标特效增加对应音效
 
-- 适配高分屏
-
 - 支持随机背景视频
 
 - 支持头尾自定义代码
+
+- 支持导航栏粘滞效果
 
 ## 功能介绍
 
 ### 短代码用法
 
-短代码可以快速为你提供更多展示效果。使文章层次更丰富。
+短代码可以快速为你提供更多展示效果，使文章层次更丰富。
 
 ```bash
 #多彩提示框
@@ -88,7 +90,6 @@
 [shrinks title="收缩框：info" style="info"]内容[/shrinks]
 [shrinks title="收缩框：warning" style="warning"]内容[/shrinks]
 [shrinks title="收缩框：danger" style="danger"]内容[/shrinks]
-
 ```
 
 ### 独立页面 - 时间线
@@ -119,11 +120,10 @@
 | ------------ | ------------ | ------------ | ------------ | ------------ |
 | 小可      | <https://kerring.me>       |  <http://www.kerring.net/img/kerring.png>   | 资深前后端程序媛                | PHP、JS   |
 | 若海      | <https://www.rehiy.com>    |  <http://www.rehiy.com/logo.png>            | 一个全栈攻城狮的纯技术干货分享    | TDP  |
-
 ```
 
 ![page_friends.png](preview/page_friends.png)
 
 ## 特别鸣谢
 
-本主题基于 [Waxy](https://github.com/dingzd1995/typecho-theme-waxy) 优化升级，感谢原作者的辛苦付出。
+本主题基于 [Waxy](https://github.com/dingzd1995/typecho-theme-waxy) 优化升级（几乎重写），感谢原作者的辛苦付出。
