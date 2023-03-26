@@ -292,22 +292,10 @@ function themeConfig($form)
         'links',
         NULL,
         '若海の技术写真,https://www.rehiy.com,https://www.rehiy.com/logo.png,一个全栈攻城狮的纯技术干货分享',
-        _t('友情链接'),
+        _t('侧边栏友情链接'),
         _t('一行一条，字段用半角逗号分隔：网站名称,网站地址,网站图标,网站说明')
     );
     $form->addInput($links);
-
-    $codeHighlightControl = new Typecho_Widget_Helper_Form_Element_Radio(
-        'codeHighlightControl',
-        array(
-            '1' => '开启',
-            '0' => '关闭'
-        ),
-        '0',
-        _t('代码高亮'),
-        _t('是否启用代码高亮功能，如需使用其他同类型插件，请关闭此项防止冲突')
-    );
-    $form->addInput($codeHighlightControl);
 
     $mouseClickEffects = new Typecho_Widget_Helper_Form_Element_Radio(
         'mouseClickEffects',
@@ -332,6 +320,18 @@ function themeConfig($form)
         _t('是否启用提醒 “这篇文章距离上次修改已过xx天，其中的内容可能已经有所变动”')
     );
     $form->addInput($lostTime);
+
+    $codeHighlightControl = new Typecho_Widget_Helper_Form_Element_Radio(
+        'codeHighlightControl',
+        array(
+            '1' => '开启',
+            '0' => '关闭'
+        ),
+        '0',
+        _t('代码高亮'),
+        _t('是否启用代码高亮功能，如需使用其他同类型插件，请关闭此项防止冲突')
+    );
+    $form->addInput($codeHighlightControl);
 
     $codeHighlightTheme = new Typecho_Widget_Helper_Form_Element_Radio(
         'codeHighlightTheme',
@@ -361,7 +361,7 @@ function themeConfig($form)
         ),
         'local',
         _t('公共资源 CDN'),
-        _t('国外建议使用jsDelivr，国内建议使用Bootcss，本地模式纯粹是为了防止CDN挂了的应急方案')
+        _t('如果你的服务器带宽较低可以使用公共 CDN 加速js和css文件')
     );
     $form->addInput($CDN);
 

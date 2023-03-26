@@ -51,6 +51,7 @@
 
 <!--代码高亮-->
 <?php if ($this->options->codeHighlightControl) : ?>
+    <link rel="stylesheet" href="<?php $this->options->themeUrl('library/prism/css/') . $this->options->codeHighlightTheme(); ?>" />
     <script type="text/javascript">
         (function() {
             var pres = document.querySelectorAll('pre');

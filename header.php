@@ -45,15 +45,9 @@
     <?php endif; ?>
     <!--local END-->
 
-    <!--代码高亮-->
-    <?php if ($this->options->codeHighlightControl) : ?>
-        <link rel="stylesheet" href="<?php $this->options->themeUrl('library/prism/css/') . $this->options->codeHighlightTheme(); ?>" />
-    <?php endif; ?>
-    <!--END-->
-
     <!-- 其他样式 -->
     <link rel="stylesheet" href="<?php $this->options->themeUrl('library/hint.min.css'); ?>">
-    <link rel="stylesheet" href="<?php $this->options->themeUrl('assets/waxyz.css?v1.2.3'); ?>">
+    <link rel="stylesheet" href="<?php $this->options->themeUrl('assets/waxyz.css?v1.2.5'); ?>">
     <!--END-->
 
     <!--自定义头部代码-->
