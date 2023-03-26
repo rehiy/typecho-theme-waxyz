@@ -21,9 +21,8 @@ $media_type = pathinfo($media_url, PATHINFO_EXTENSION);
     </div>
 
     <script type="text/javascript">
-        document.querySelectorAll('.main-navigation, .content-wrap').forEach(function(item, index) {
-            item.classList.add('background-top')
-        })
+        document.querySelector('.main-navigation').style.opacity = 0.9
+        document.querySelector('.content-wrap').style.opacity = 0.8
     </script>
 
 <?php elseif (preg_match('/mp4/i', $media_type)) : ?>
@@ -54,9 +53,8 @@ $media_type = pathinfo($media_url, PATHINFO_EXTENSION);
         $btn.addEventListener('click', function() {
             pictureInPicture ? document.exitPictureInPicture() : $mp4.requestPictureInPicture()
         })
-        document.querySelectorAll('.main-navigation, .content-wrap').forEach(function(item, index) {
-            item.classList.add('background-top')
-        })
+        document.querySelector('.main-navigation').style.opacity = 0.9
+        document.querySelector('.content-wrap').style.opacity = 0.8
     </script>
 
 <?php endif; ?>

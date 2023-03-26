@@ -217,6 +217,9 @@ th {
 /* main-navigation */
 
 .main-navigation {
+    position: sticky;
+    top: 0;
+    z-index: 100;
     text-align: center;
     background: #ffffff;
     border-top: 1px solid #ebebeb;
@@ -2028,10 +2031,6 @@ th {
 /*====================================================
     background media
 ====================================================*/
-
-.background-top {
-    opacity: 0.8;
-}
 
 .background-media {
     position: fixed;
