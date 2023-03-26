@@ -3,8 +3,6 @@
 /**
  * Navigation
  *
- * @package     Library
- * @subpackage  Navigation
  * @author      rehiy <https://www.rehiy.com>
  * @version     1.0.0
  */

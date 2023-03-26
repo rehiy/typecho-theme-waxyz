@@ -10,6 +10,8 @@ date_default_timezone_set('Asia/Shanghai');
 // 主题设置
 function themeConfig($form)
 {
+    include __DIR__ . '/include/config-helper.php';
+
     $logoUrl = new Typecho_Widget_Helper_Form_Element_Text(
         'logoUrl',
         NULL,
