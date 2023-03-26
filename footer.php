@@ -11,7 +11,7 @@
     </div>
 </div>
 
-<a id="back-to-top"><i class="glyphicon glyphicon-menu-up"></i></a>
+<a class="back-to-top"><i class="glyphicon glyphicon-menu-up"></i></a>
 
 <!--staticfile-->
 <?php if (strcmp($this->options->CDN, "staticfile") == 0) : ?>
@@ -77,7 +77,7 @@
 <!--置顶文章滚动支持-->
 <?php if (!empty($this->options->sticky) && count(explode(',', strtr($this->options->sticky, ' ', ','))) > 1) : ?>
     <script type="text/javascript">
-        var doscroll = function() {
+        setInterval(function() {
             var $parent = $('.js-slide-list');
             var $first = $parent.find('li:first');
             var height = $first.height();
@@ -86,9 +86,6 @@
             }, 500, function() {
                 $first.css('marginTop', 0).appendTo($parent);
             });
-        };
-        setInterval(function() {
-            doscroll()
         }, 2000);
     </script>
 <?php endif; ?>

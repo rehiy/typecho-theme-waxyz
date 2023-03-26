@@ -214,67 +214,6 @@ th {
     header
 ====================================================*/
 
-#container {}
-
-#output {
-    width: 100%;
-    height: 100%;
-}
-
-.main-header {
-    text-align: center;
-    position: relative;
-    padding: 42px 0;
-    background: #f4645f;
-}
-
-.main-header .branding {
-    font-size: 3.5em;
-    color: #303030;
-}
-
-.main-header .branding:hover {
-    text-decoration: none;
-}
-
-.main-header .branding img {
-    max-width: 100%;
-}
-
-.main-header h1 a {
-    color: #fff;
-}
-
-.main-header h1 a:hover {
-    text-decoration: none;
-}
-
-.btn-doc {
-    position: relative;
-    bottom: -40px;
-    border: 1px solid #f1362f;
-    background-color: transparent;
-}
-
-@media only screen and (max-width: 767px) {
-    .btn-doc {
-        display: block;
-        width: 50%;
-        margin-left: auto;
-        margin-right: auto;
-        margin-top: 10px;
-    }
-}
-
-.home-template .main-header {
-    padding-top: 62px;
-    padding-bottom: 62px;
-    background-repeat: no-repeat;
-    background-position: center 20%;
-    -webkit-background-size: cover;
-    background-size: cover;
-}
-
 /* main-navigation */
 
 .main-navigation {
@@ -502,8 +441,6 @@ th {
     padding: 6px 10px;
     border-radius: 5px;
 }
-
-.nav-toggle-search input:focus {}
 
 .nav-toggle-search button {
     border: none;
@@ -767,7 +704,6 @@ th {
     margin-top: 5px;
     padding-top: 5px;
 }
-
 
 .post .readall_box {
     position: relative;
@@ -1206,11 +1142,6 @@ th {
     }
 }
 
-.windows .post-content {
-    font-size: 16px;
-    font-family: "Georgia", "SimSun", sans-serif;
-}
-
 /*多彩提示框*/
 
 .wrap_hi {
@@ -1452,6 +1383,15 @@ th {
 
 .about-author .comment-meta {
     padding-bottom: 10px;
+}
+
+.comment-form .text,
+.comment-form .textarea {
+    width: 100%
+}
+
+.comment-form .submit {
+    padding: 7px 20px
 }
 
 /* prev and next link */
@@ -1730,7 +1670,7 @@ th {
     color: #a6a6a6;
 }
 
-.card-bg {
+.widget .card-bg {
     position: absolute;
     top: 0;
     left: 15px;
@@ -2063,7 +2003,7 @@ th {
     color: #7b7b7b;
 }
 
-#back-to-top {
+.back-to-top {
     position: fixed;
     right: 25px;
     bottom: 25px;
@@ -2075,23 +2015,51 @@ th {
     display: none;
 }
 
-#back-to-top:hover {
+.back-to-top:hover {
     background: #f4645f;
 }
 
-#back-to-top i {
+.back-to-top i {
     width: 45px;
     height: 45px;
     line-height: 45px;
 }
 
-#comment-form .text,
-#comment-form .textarea {
-    width: 100%
+/*====================================================
+    background media
+====================================================*/
+
+.background-top {
+    opacity: 0.8;
 }
 
-#comment-form .submit {
-    padding: 7px 20px
+.background-media {
+    position: fixed;
+    top: 0;
+    z-index: -1000;
+}
+
+.background-ctrl {
+    position: fixed;
+    right: 25px;
+    bottom: 80px;
+    background: rgba(244, 100, 95, 0.6);
+    color: #ffffff;
+    text-align: center;
+    border-radius: 6px;
+    z-index: 1;
+    display: none;
+}
+
+.background-ctrl:hover {
+    background: #f4645f;
+    color: #ffffff;
+}
+
+.background-ctrl i {
+    width: 45px;
+    height: 45px;
+    line-height: 45px;
 }
 
 /*====================================================

@@ -20,18 +20,11 @@ $media_type = pathinfo($media_url, PATHINFO_EXTENSION);
         <img src="<?php echo $media_url; ?>" width="auto" />
     </div>
 
-    <style type="text/css">
-        .main-navigation,
-        .content-wrap {
-            opacity: 0.9;
-        }
-
-        .background-media {
-            position: fixed;
-            top: 0;
-            z-index: -1000;
-        }
-    </style>
+    <script type="text/javascript">
+        document.querySelectorAll('.main-navigation, .content-wrap').forEach(function(item, index) {
+            item.classList.add('background-top')
+        })
+    </script>
 
 <?php elseif (preg_match('/mp4/i', $media_type)) : ?>
 
@@ -41,42 +34,6 @@ $media_type = pathinfo($media_url, PATHINFO_EXTENSION);
     <div class="background-media">
         <video loop muted autoplay width="auto" type="video/mp4" src="<?php echo $media_url; ?>"></video>
     </div>
-
-    <style type="text/css">
-        .main-navigation,
-        .content-wrap {
-            opacity: 0.9;
-        }
-
-        .background-media {
-            position: fixed;
-            top: 0;
-            z-index: -1000;
-        }
-
-        .background-ctrl {
-            position: fixed;
-            right: 25px;
-            bottom: 80px;
-            background: rgba(244, 100, 95, 0.6);
-            color: #ffffff;
-            text-align: center;
-            border-radius: 6px;
-            z-index: 1;
-            display: none;
-        }
-
-        .background-ctrl:hover {
-            background: #f4645f;
-            color: #ffffff;
-        }
-
-        .background-ctrl i {
-            width: 45px;
-            height: 45px;
-            line-height: 45px;
-        }
-    </style>
 
     <script type="text/javascript">
         var pictureInPicture = false
@@ -96,6 +53,9 @@ $media_type = pathinfo($media_url, PATHINFO_EXTENSION);
         });
         $btn.addEventListener('click', function() {
             pictureInPicture ? document.exitPictureInPicture() : $mp4.requestPictureInPicture()
+        })
+        document.querySelectorAll('.main-navigation, .content-wrap').forEach(function(item, index) {
+            item.classList.add('background-top')
         })
     </script>
 

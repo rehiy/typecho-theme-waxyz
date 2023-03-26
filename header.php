@@ -53,7 +53,7 @@
 
     <!-- 其他样式 -->
     <link rel="stylesheet" href="<?php $this->options->themeUrl('library/hint.min.css'); ?>">
-    <link rel="stylesheet" href="<?php $this->options->themeUrl('assets/waxyz.css'); ?>">
+    <link rel="stylesheet" href="<?php $this->options->themeUrl('assets/waxyz.css?v1.2.3'); ?>">
     <!--END-->
 
     <!--自定义头部代码-->
@@ -64,11 +64,12 @@
     <?php $this->header(); ?>
 </head>
 
-<body class="home-template">
+<body>
+
     <!-- start loading -->
     <?php include __DIR__ . '/include/loading.html'; ?>
-    <!-- end loading -->
+    <!--END-->
 
     <!-- start navigation -->
     <?php include __DIR__ . '/include/navigation.php'; ?>
-    <!-- end navigation -->
+    <!--END-->
