@@ -28,7 +28,7 @@ $media_type = pathinfo($media_url, PATHINFO_EXTENSION);
 <?php elseif (preg_match('/mp4/i', $media_type)) : ?>
 
     <a class="background-ctrl">
-        <i class="glyphicon glyphicon-play"></i>
+        <i class="glyphicon glyphicon glyphicon-film"></i>
     </a>
     <div class="background-media">
         <video loop muted autoplay width="auto" type="video/mp4" src="<?php echo $media_url; ?>"></video>

@@ -67,7 +67,7 @@
 <!--END-->
 
 <!--公共脚本-->
-<script src="<?php $this->options->themeUrl('assets/waxyz.js?v17'); ?>"></script>
+<script src="<?php $this->options->themeUrl('assets/global.js?v17'); ?>"></script>
 
 <!--鼠标特效-->
 <?php if ($this->options->mouseClickEffects) : ?>

@@ -17,7 +17,7 @@ $(document).ready(function () {
 
 // 回到顶部按钮
 $(document).ready(function () {
-    var bt = $('#back-to-top');
+    var bt = $('.back-to-top');
     if ($(document).width() > 480) {
         $(window).scroll(function () {
             var st = $(window).scrollTop();
