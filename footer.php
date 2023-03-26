@@ -4,8 +4,14 @@
     <div class="container">
         <div class="row">
             <div class="col-sm-12">
-                <span>Copyright &copy; <?php echo date("Y"); ?> <a href="<?php $this->options->siteUrl(); ?>" target="_blank"><?php $this->options->title(); ?></a></span><br />
-                <span>Powered by <a href="http://typecho.org/" target="_blank">Typecho</a> & <a href="https://github.com/rehiy/typecho-theme-waxyz" target="_blank">Waxyz</a> <?php add_icp_code(); ?></span><br />
+                &copy; <?php echo date("Y", strtotime($this->options->startTime))  . ' - ' . date("Y"); ?>
+                <a href="<?php $this->options->siteUrl(); ?>" target="_blank"><?php $this->options->title(); ?></a>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-12">
+                Powered by <a href="http://typecho.org/" target="_blank">Typecho</a> & <a href="https://github.com/rehiy/typecho-theme-waxyz" target="_blank">Waxyz</a>
+                <?php add_icp_code(); ?>
             </div>
         </div>
     </div>

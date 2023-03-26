@@ -33,7 +33,7 @@ function themeConfig($form)
     $startTime = new Typecho_Widget_Helper_Form_Element_Text(
         'startTime',
         NULL,
-        NULL,
+        "2019-11-23 13:55:00",
         _t('建站日期'),
         _t('格式：2019-11-23 13:55:00')
     );
