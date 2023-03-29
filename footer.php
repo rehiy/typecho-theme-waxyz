@@ -20,7 +20,7 @@
 <a class="back-to-top"><i class="glyphicon glyphicon-menu-up"></i></a>
 
 <!--Library-->
-<?php if ($this->options->CDN == "") : ?>
+<?php if ($this->options->CDN == "local") : ?>
     <script src="<?php $this->options->themeUrl('library/jquery.min.js?v3.6.1'); ?>"></script>
     <script src="<?php $this->options->themeUrl('library/jquery.fancybox.min.js'); ?>"></script>
     <script src="<?php $this->options->themeUrl('library/jquery.lazyload.min.js'); ?>"></script>

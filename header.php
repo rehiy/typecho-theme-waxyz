@@ -16,7 +16,7 @@
             ), '', ' - '); ?><?php $this->options->title(); ?></title>
 
     <!--Library-->
-    <?php if ($this->options->CDN == "") : ?>
+    <?php if ($this->options->CDN == "local") : ?>
         <link rel="stylesheet" href="<?php $this->options->themeUrl('library/bootstrap.min.css?v3.4.1'); ?>">
         <link rel="stylesheet" href="<?php $this->options->themeUrl('library/jquery.fancybox.min.css?3.5.7'); ?>">
         <link rel="stylesheet" href="<?php $this->options->themeUrl('library/hint.min.css?v2.6.0'); ?>">

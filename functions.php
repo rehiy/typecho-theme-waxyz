@@ -356,7 +356,7 @@ function themeConfig($form)
     $CDN = new Typecho_Widget_Helper_Form_Element_Radio(
         'CDN',
         array(
-            '' => _t('本地'),
+            'local' => _t('本地'),
             'cdnjs.cloudflare.com' => _t('cdnjs.cloudflare.com'),
             'cdn.bootcdn.net' => _t('cdn.bootcdn.net'),
         ),
