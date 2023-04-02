@@ -56,27 +56,17 @@ $media_type = strtolower(trim($media_type));
             muted: true,
             loop: true,
         });
-        var pictureInPicture = false
         var $ctl = document.querySelector('.background-ctrl')
         var $bgm = document.querySelector('.background-media')
-        var $mp4 = document.querySelector('.background-media video')
-        $mp4.addEventListener('play', (event) => {
+        player.on('loadeddata', (event) => {
+            document.querySelector('.main-navigation').style.opacity = 0.9
+            document.querySelector('.content-wrap').style.opacity = 0.8
             $ctl.style.display = 'block'
-            $bgm.style.display = 'flex'
-        });
-        $mp4.addEventListener('enterpictureinpicture', (event) => {
-            $bgm.style.display = 'none'
-            pictureInPicture = true
-        });
-        $mp4.addEventListener('leavepictureinpicture', (event) => {
-            $bgm.style.display = 'block'
-            pictureInPicture = false
+            $bgm.style.opacity = 1
         });
         $ctl.addEventListener('click', function() {
-            pictureInPicture ? document.exitPictureInPicture() : $mp4.requestPictureInPicture()
+            $bgm.classList.contains('small') ? $bgm.classList.remove('small') : $bgm.classList.add('small')
         })
-        document.querySelector('.main-navigation').style.opacity = 0.9
-        document.querySelector('.content-wrap').style.opacity = 0.8
     </script>
 
 <?php endif; ?>

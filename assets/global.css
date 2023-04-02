@@ -2032,18 +2032,6 @@ th {
     background media
 ====================================================*/
 
-.background-media {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    position: fixed;
-    z-index: -10;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    left: 0;
-}
-
 .background-ctrl {
     display: none;
     position: fixed;
@@ -2065,6 +2053,30 @@ th {
     width: 45px;
     height: 45px;
     line-height: 45px;
+}
+
+.background-media {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: fixed;
+    z-index: -10;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    /**hidden**/
+    opacity: 0;
+}
+
+.background-media.small {
+    width: 300px;
+    height: 200px;
+    z-index: 10;
+    top: auto;
+    right: 90px;
+    bottom: 10px;
+    left: auto;
 }
 
 /*====================================================
