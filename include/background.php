@@ -9,11 +9,11 @@
 
 if (!defined('__TYPECHO_ROOT_DIR__')) exit;
 
-$media_type = pathinfo($media_url, PATHINFO_EXTENSION);
-$media_type = strtolower(trim($media_type));
+[$media_type, $media_url] = explode(',', $media_url, 2);
+[$media_type, $media_url]  = [trim($media_type), trim($media_url)];
 ?>
 
-<?php if (preg_match('/webp|jpeg|jpg|png|gif/i', $media_type)) : ?>
+<?php if (preg_match('/image/i', $media_type)) : ?>
 
     <div class="background-media">
         <img src="<?php echo $media_url; ?>" width="auto" />
@@ -24,7 +24,7 @@ $media_type = strtolower(trim($media_type));
         document.querySelector('.content-wrap').style.opacity = 0.8
     </script>
 
-<?php elseif (preg_match('/webm|mp4|ogv|m3u8|/i', $media_type)) : ?>
+<?php elseif (preg_match('/video|app/i', $media_type)) : ?>
 
     <a class="background-ctrl">
         <i class="glyphicon glyphicon glyphicon-film"></i>
@@ -32,28 +32,15 @@ $media_type = strtolower(trim($media_type));
 
     <div class="background-media">
         <video id="bg-media" class="video-js" style="width:100%;height:100%">
-            <?php if ($media_type == "webm") { ?>
-                <source src="<?php echo $media_url; ?>" type="video/webm">
-                </source>
-            <?php } elseif ($media_type == "mp4") { ?>
-                <source src="<?php echo $media_url; ?>" type="video/mp4">
-                </source>
-            <?php } elseif ($media_type == "ogv") { ?>
-                <source src="<?php echo $media_url; ?>" type="video/ogg">
-                </source>
-            <?php } elseif ($media_type == "m3u8") { ?>
-                <source src="<?php echo $media_url; ?>" type="application/x-mpegURL">
-                </source>
-            <?php } ?>
+            <source src="<?php echo $media_url; ?>" type="<?php echo $media_type; ?>">
         </video>
     </div>
 
     <script type="text/javascript">
         var player = videojs('bg-media', {
             controls: true,
-            autoplay: "muted",
+            autoplay: "any",
             preload: 'auto',
-            muted: true,
             loop: true,
         });
         var $ctl = document.querySelector('.background-ctrl')

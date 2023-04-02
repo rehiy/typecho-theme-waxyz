@@ -384,7 +384,7 @@ function themeConfig($form)
         NULL,
         NULL,
         _t('多媒体背景地址'),
-        _t('支持 jpg,png,gif,mp4 格式，一行一个地址，留空则不显示背景媒体')
+        _t('一行一个地址，留空则不显示，格式(请用半角逗号分隔)：类型,地址；目前支持：image/*,video/webm,video/mp4,video/ogg,application/x-mpegURL')
     );
     $form->addInput($backgroundMedia);
 
@@ -662,7 +662,7 @@ function add_background_media($self)
     if ($media = trim($options->backgroundMedia)) {
         $media_list = explode("\n", $media);
         $media_url = $media_list[array_rand($media_list)];
-        if ($media_url) {
+        if ($media_url && strpos($media_url, ',') > 0) {
             include __DIR__ . '/include/background.php';
         }
     }
