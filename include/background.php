@@ -31,7 +31,7 @@ $media_type = strtolower(trim($media_type));
     </a>
 
     <div class="background-media">
-        <video id="bg-media" class="video-js" loop muted autoplay preload="auto" width="auto">
+        <video id="bg-media" class="video-js" style="width:100%;height:100%" loop muted autoplay preload="auto">
             <?php if ($media_type == "webm") { ?>
                 <source src="<?php echo $media_url; ?>" type="video/webm">
                 </source>
@@ -56,7 +56,7 @@ $media_type = strtolower(trim($media_type));
         var $mp4 = document.querySelector('.background-media video')
         $mp4.addEventListener('play', (event) => {
             $ctl.style.display = 'block'
-            $bgm.style.display = 'block'
+            $bgm.style.display = 'flex'
         });
         $mp4.addEventListener('enterpictureinpicture', (event) => {
             $bgm.style.display = 'none'
