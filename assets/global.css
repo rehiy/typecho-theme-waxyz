@@ -2033,12 +2033,19 @@ th {
 ====================================================*/
 
 .background-media {
+    display: flex;
+    align-items: center;
+    justify-content: center;
     position: fixed;
+    z-index: -10;
     top: 0;
-    z-index: -1000;
+    right: 0;
+    bottom: 0;
+    left: 0;
 }
 
 .background-ctrl {
+    display: none;
     position: fixed;
     right: 25px;
     bottom: 80px;
@@ -2047,7 +2054,6 @@ th {
     text-align: center;
     border-radius: 6px;
     z-index: 1;
-    display: none;
 }
 
 .background-ctrl:hover {
