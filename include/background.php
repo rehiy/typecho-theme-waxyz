@@ -10,6 +10,7 @@
 if (!defined('__TYPECHO_ROOT_DIR__')) exit;
 
 $media_type = pathinfo($media_url, PATHINFO_EXTENSION);
+$media_type = strtolower(trim($media_type));
 ?>
 
 <?php if (preg_match('/webp|jpeg|jpg|png|gif/i', $media_type)) : ?>
@@ -31,18 +32,19 @@ $media_type = pathinfo($media_url, PATHINFO_EXTENSION);
 
     <div class="background-media">
         <video id="bg-media" class="video-js" loop muted autoplay preload="auto" width="auto">
-            <?php if ($media_type == "webm") : ?>
-                <source src="<?php echo $media_url; ?>" type="video/webm" />
-            <?php endif; ?>
-            <?php if ($media_type == "mp4") : ?>
-                <source src="<?php echo $media_url; ?>" type="video/mp4" />
-            <?php endif; ?>
-            <?php if ($media_type == "ogv") : ?>
-                <source src="<?php echo $media_url; ?>" type="video/ogg" />
-            <?php endif; ?>
-            <?php if ($media_type == "m3u8") : ?>
+            <?php if ($media_type == "webm") { ?>
+                <source src="<?php echo $media_url; ?>" type="video/webm">
+                </source>
+            <?php } elseif ($media_type == "mp4") { ?>
+                <source src="<?php echo $media_url; ?>" type="video/mp4">
+                </source>
+            <?php } elseif ($media_type == "ogv") { ?>
+                <source src="<?php echo $media_url; ?>" type="video/ogg">
+                </source>
+            <?php } elseif ($media_type == "m3u8") { ?>
                 <source src="<?php echo $media_url; ?>" type="application/x-mpegURL">
-            <?php endif; ?>
+                </source>
+            <?php } ?>
         </video>
     </div>
 
