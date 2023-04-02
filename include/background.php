@@ -31,7 +31,7 @@ $media_type = strtolower(trim($media_type));
     </a>
 
     <div class="background-media">
-        <video id="bg-media" class="video-js" style="width:100%;height:100%" loop muted autoplay preload="auto">
+        <video id="bg-media" class="video-js" style="width:100%;height:100%">
             <?php if ($media_type == "webm") { ?>
                 <source src="<?php echo $media_url; ?>" type="video/webm">
                 </source>
@@ -49,7 +49,13 @@ $media_type = strtolower(trim($media_type));
     </div>
 
     <script type="text/javascript">
-        var player = videojs('bg-media');
+        var player = videojs('bg-media', {
+            controls: true,
+            autoplay: "muted",
+            preload: 'auto',
+            muted: true,
+            loop: true,
+        });
         var pictureInPicture = false
         var $ctl = document.querySelector('.background-ctrl')
         var $bgm = document.querySelector('.background-media')
