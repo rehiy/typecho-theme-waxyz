@@ -2032,29 +2032,6 @@ th {
     background media
 ====================================================*/
 
-.background-ctrl {
-    display: none;
-    position: fixed;
-    right: 25px;
-    bottom: 80px;
-    background: rgba(244, 100, 95, 0.6);
-    color: #ffffff;
-    text-align: center;
-    border-radius: 6px;
-    z-index: 1;
-}
-
-.background-ctrl:hover {
-    background: #f4645f;
-    color: #ffffff;
-}
-
-.background-ctrl i {
-    width: 45px;
-    height: 45px;
-    line-height: 45px;
-}
-
 .background-media {
     display: flex;
     align-items: center;
@@ -2077,6 +2054,39 @@ th {
     right: 90px;
     bottom: 10px;
     left: auto;
+}
+
+.background-ctrls {
+    display: flex;
+    flex-direction: column;
+    position: fixed;
+    right: 25px;
+    bottom: 80px;
+    z-index: 1;
+    /**hidden**/
+    opacity: 0;
+}
+
+.background-ctrls a {
+    background: rgba(244, 100, 95, 0.6);
+    color: #ffffff;
+    text-align: center;
+    border-radius: 6px;
+}
+
+.background-ctrls a:hover {
+    background: #f4645f;
+    color: #ffffff;
+}
+
+.background-ctrls a+a {
+    margin-top: 10px;
+}
+
+.background-ctrls a i {
+    width: 45px;
+    height: 45px;
+    line-height: 45px;
 }
 
 /*====================================================
