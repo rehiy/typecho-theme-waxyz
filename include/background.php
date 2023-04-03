@@ -20,8 +20,15 @@ if (!defined('__TYPECHO_ROOT_DIR__')) exit;
     </div>
 
     <script type="text/javascript">
-        document.querySelector('.main-navigation').style.opacity = 0.9
-        document.querySelector('.content-wrap').style.opacity = 0.8
+        $('.content-wrap').animate({
+            'opacity': 0.8
+        }, 1500)
+        $('.main-navigation').animate({
+            'opacity': 0.9
+        }, 1500)
+        $('.background-media').animate({
+            'opacity': 1
+        }, 1500)
     </script>
 
 <?php elseif (preg_match('/video|app/i', $media_type)) : ?>
