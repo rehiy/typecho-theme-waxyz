@@ -11,10 +11,11 @@ $this->need('header.php');
 
 function getFriendsHtml($content)
 {
-    $content = str_replace("\n", '', get_content($content));
+    $content = get_content($content);
 
     if (preg_match('/<table.+<\/table>/iUs', $content, $table)) {
-        if (preg_match_all('/<tr><td>(.+)<\/td><\/tr>/iUs', $table[0], $trlist)) {
+        $table0 = preg_replace('/[\r\n]/', '', $table[0]);
+        if (preg_match_all('/<tr><td>(.+)<\/td><\/tr>/iUs', $table0, $trlist)) {
             $html = [
                 '<ul class="row">'
             ];
