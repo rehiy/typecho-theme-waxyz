@@ -11,7 +11,7 @@
         <div class="row">
             <div class="col-sm-12">
                 Powered by <a href="http://typecho.org/" target="_blank">Typecho</a> & <a href="https://github.com/rehiy/typecho-theme-waxyz" target="_blank">Waxyz</a>
-                <?php add_icp_code(); ?>
+                <?php add_icp_code(); add_psb_code(); ?>
             </div>
         </div>
     </div>

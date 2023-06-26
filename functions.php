@@ -48,6 +48,15 @@ function themeConfig($form)
     );
     $form->addInput($ICP);
 
+    $PSB = new Typecho_Widget_Helper_Form_Element_Text(
+        'PSB',
+        NULL,
+        NULL,
+        _t('公安备案号'),
+        _t('网站公安备案号，留空关闭')
+    );
+    $form->addInput($PSB);
+
     $cardName = new Typecho_Widget_Helper_Form_Element_Text(
         'cardName',
         NULL,
@@ -695,6 +704,16 @@ function add_icp_code()
     $ICP_text = $options->ICP;
     if (!empty($ICP_text)) {
         echo ' | <a rel="nofollow noopener noreferrer" href="https://beian.miit.gov.cn/" target="_blank">' . $ICP_text . '</a></span>';
+    }
+}
+
+// 公安部备案
+function add_psb_code()
+{
+    $options = Typecho_Widget::widget('Widget_Options');
+    $PSB_text = $options->PSB;
+    if (!empty($PSB_text)) {
+        echo ' | <a rel="nofollow noopener noreferrer" href="http://www.beian.gov.cn/" target="_blank">' . $PSB_text . '</a></span>';
     }
 }
 
