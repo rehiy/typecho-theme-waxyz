@@ -4,7 +4,7 @@
     <div class="container">
         <div class="row">
             <div class="col-sm-12">
-                &copy; <?php echo date("Y", strtotime($this->options->startTime))  . ' - ' . date("Y"); ?>
+                &copy; <?php echo date('Y', strtotime($this->options->startTime))  . ' - ' . date('Y'); ?>
                 <a href="<?php $this->options->siteUrl(); ?>" target="_blank"><?php $this->options->title(); ?></a>
             </div>
         </div>
@@ -54,7 +54,7 @@
 <?php endif; ?>
 
 <!--公共脚本-->
-<script src="<?php $this->options->themeUrl('assets/global.js?v17'); ?>"></script>
+<script src="<?php $this->options->themeUrl('assets/global.js?v18'); ?>"></script>
 
 <!--鼠标特效-->
 <?php if ($this->options->mouseClickEffects) : ?>

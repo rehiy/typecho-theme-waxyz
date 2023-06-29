@@ -1,11 +1,3 @@
-// 图片懒加载
-$(document).ready(function () {
-    $('img').lazyload({
-        /*placeholder: '/loading.gif',*/
-        effect: 'fadeIn'
-    });
-});
-
 // 下拉菜单
 $(document).ready(function () {
     $('.menu ul li').hover(function () {
@@ -15,7 +7,7 @@ $(document).ready(function () {
     });
 });
 
-// 回到顶部按钮
+// 回到顶部
 $(document).ready(function () {
     var bt = $('.back-to-top');
     if ($(document).width() > 480) {
@@ -30,3 +22,17 @@ $(document).ready(function () {
         });
     }
 });
+
+// 图片查看器
+$(document).ready(function () {
+    new Viewer(document.querySelector('article'))
+});
+
+// 图片懒加载
+$(document).ready(function () {
+    $('img').lazyload({
+        placeholder: '/usr/themes/waxyz/assets//loading.gif',
+        effect: 'fadeIn'
+    });
+});
+
