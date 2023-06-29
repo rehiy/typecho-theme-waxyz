@@ -11,7 +11,8 @@
         <div class="row">
             <div class="col-sm-12">
                 Powered by <a href="http://typecho.org/" target="_blank">Typecho</a> & <a href="https://github.com/rehiy/typecho-theme-waxyz" target="_blank">Waxyz</a>
-                <?php add_icp_code(); add_psb_code(); ?>
+                <?php add_icp_code(); ?>
+                <?php add_psb_code(); ?>
             </div>
         </div>
     </div>
@@ -26,12 +27,14 @@
     <script src="<?php $this->options->themeUrl('library/jquery.lazyload.min.js'); ?>"></script>
     <script src="<?php $this->options->themeUrl('library/bootstrap.min.js?v3.4.1'); ?>"></script>
     <script src="<?php $this->options->themeUrl('library/video.min.js?8.0.4'); ?>"></script>
+    <script src="<?php $this->options->themeUrl('library/viewer.min.js?1.11.3'); ?>"></script>
 <?php else : ?>
     <script src="//<?php echo $this->options->CDN; ?>/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
     <script src="//<?php echo $this->options->CDN; ?>/ajax/libs/twitter-bootstrap/3.4.1/js/bootstrap.min.js"></script>
     <script src="//<?php echo $this->options->CDN; ?>/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.js"></script>
     <script src="//<?php echo $this->options->CDN; ?>/ajax/libs/jquery_lazyload/1.9.7/jquery.lazyload.min.js"></script>
     <script src="//<?php echo $this->options->CDN; ?>/ajax/libs/video.js/8.0.4/video.min.js"></script>
+    <script src="//<?php echo $this->options->CDN; ?>/ajax/libs/viewerjs/1.11.3/viewer.min.js"></script>
 <?php endif; ?>
 
 <!--代码高亮-->

@@ -21,11 +21,13 @@
         <link rel="stylesheet" href="<?php $this->options->themeUrl('library/jquery.fancybox.min.css?3.5.7'); ?>">
         <link rel="stylesheet" href="<?php $this->options->themeUrl('library/hint.min.css?v2.6.0'); ?>">
         <link rel="stylesheet" href="<?php $this->options->themeUrl('library/video.min.css?7.10.2'); ?>">
+        <link rel="stylesheet" href="<?php $this->options->themeUrl('library/viewer.min.css?1.11.3'); ?>">
     <?php else : ?>
         <link rel="stylesheet" href="//<?php echo $this->options->CDN; ?>/ajax/libs/twitter-bootstrap/3.4.1/css/bootstrap.min.css">
         <link rel="stylesheet" href="//<?php echo $this->options->CDN; ?>/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.css">
         <link rel="stylesheet" href="//<?php echo $this->options->CDN; ?>/ajax/libs/hint.css/2.6.0/hint.min.css" />
         <link rel="stylesheet" href="//<?php echo $this->options->CDN; ?>/ajax/libs/video.js/7.10.2/video-js.min.css" />
+        <link rel="stylesheet" href="//<?php echo $this->options->CDN; ?>/ajax/libs/viewerjs/1.11.3/viewer.min.css" />
     <?php endif; ?>
 
     <!--公共样式-->
