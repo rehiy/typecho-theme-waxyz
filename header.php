@@ -31,7 +31,7 @@
     <?php endif; ?>
 
     <!--公共样式-->
-    <link rel="stylesheet" href="<?php $this->options->themeUrl('assets/global.css?v1.2.5'); ?>">
+    <link rel="stylesheet" href="<?php $this->options->themeUrl('assets/global.css?v1.2.9'); ?>">
 
     <!--自定义头部代码-->
     <?php add_custom_header(); ?>

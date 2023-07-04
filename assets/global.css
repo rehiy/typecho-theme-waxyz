@@ -860,10 +860,15 @@ th {
 }
 
 .post-content img {
-    max-width: 100%;
+    max-width: 60%;
+    max-height: 60vh;
     height: auto;
     margin: 0.2em 0;
     border-radius: 5px;
+}
+
+.post-content img:hover {
+    cursor: pointer;
 }
 
 .imgtitle {
