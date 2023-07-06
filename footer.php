@@ -54,7 +54,7 @@
 <?php endif; ?>
 
 <!--公共脚本-->
-<script src="<?php $this->options->themeUrl('assets/global.js?v18'); ?>"></script>
+<script src="<?php $this->options->themeUrl('assets/global.js?v18.3'); ?>"></script>
 
 <!--鼠标特效-->
 <?php if ($this->options->mouseClickEffects) : ?>

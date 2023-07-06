@@ -37,6 +37,9 @@
                             <?php $this->tags(' , ', true, 'none'); ?>
                         </div>
                         <div class="pull-right tag-list post-permalink">
+                            <?php if ($this->options->zzBaiduToken) : ?>
+                                <span id="baidu_record">正在检测是否收录...</span> |
+                            <?php endif; ?>
                             <?php if ($this->user->uid == $this->authorId) : ?>
                                 <a href="<?php $this->options->adminUrl(); ?>write-post.php?cid=<?php echo $this->cid; ?>" target="_blank">编辑文章</a> |
                             <?php endif; ?>
