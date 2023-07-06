@@ -16,7 +16,7 @@ function themeConfig($form)
         'logoUrl',
         NULL,
         NULL,
-        _t('站点 LOGO'),
+        _t('站点 Logo'),
         _t('在这里填入一个图片地址（URL）, 用来显示网站 LOGO，为空则显示网站标题')
     );
     $form->addInput($logoUrl);
@@ -57,11 +57,20 @@ function themeConfig($form)
     );
     $form->addInput($PSB);
 
+    $zzBaiduToken = new Typecho_Widget_Helper_Form_Element_Text(
+        'zzBaiduToken',
+        NULL,
+        NULL,
+        _t('百度搜索推送密钥'),
+        _t('向百度搜索主动推送资源，缩短爬虫发现网站链接的时间，不保证收录和展现效果，留空关闭。<br>获取地址 https://ziyuan.baidu.com/dashboard/index')
+    );
+    $form->addInput($zzBaiduToken);
+
     $cardName = new Typecho_Widget_Helper_Form_Element_Text(
         'cardName',
         NULL,
         NULL,
-        _t('昵称'),
+        _t('站长昵称'),
         _t('在关于侧边栏中展示')
     );
     $form->addInput($cardName);
@@ -70,7 +79,7 @@ function themeConfig($form)
         'cardImg',
         NULL,
         NULL,
-        _t('头像'),
+        _t('站长头像'),
         _t('在关于侧边栏中展示，请填入绝对地址（URL）')
     );
     $form->addInput($cardImg);
@@ -79,7 +88,7 @@ function themeConfig($form)
         'cardDescription',
         NULL,
         NULL,
-        _t('介绍/一言'),
+        _t('站长介绍/一言'),
         _t('在关于侧边栏中展示，支持 html')
     );
     $form->addInput($cardDescription);
@@ -446,9 +455,7 @@ function get_content($content)
 function get_content_more($content, $permalink)
 {
     $content = get_content($content);
-
     $array = explode('<!--more-->', $content);
-
     $content = $array[0];
 
     if ($array[1] !== null) {
@@ -485,7 +492,7 @@ function get_excerpt($excerpt, $num, $str)
     //转义HTML
     $excerpt = htmlentities($excerpt);
 
-    //使用mb_substr防止中文截取成乱码，需要开启extension=php_mbstring.dll扩展，一般都开了
+    //使用mb_substr防止中文截取成乱码
     if ($str !== '' || $num !== -1) {
         return mb_substr($excerpt, 0, $num, "UTF-8") . $str;
     } else {
@@ -521,56 +528,55 @@ function get_pic_html($content)
 function get_first_img($content)
 {
     $options = Typecho_Widget::widget('Widget_Options');
-    $img_url = '';
+    // 获取第一张图
     if ($options->findFirstImage) {
         preg_match_all('/\<img.*?src\=\"(.*?)\".*?[^>]*>/i', $content, $match);
         if ($match[1][0]) {
-            $img_url = $match[1][0];
-            return $img_url;
+            return $match[1][0];
         }
     }
-    $images = $options->firstImages;
-    if ($images) {
-        $images_list = explode(PHP_EOL, $images);
-        $img_url = $images_list[array_rand($images_list)];
+    // 随机图
+    if ($options->firstImages) {
+        $images_list = explode(PHP_EOL, $options->firstImages);
+        return $images_list[array_rand($images_list)];
     }
-    return $img_url;
+    return '';
 }
 
 // 秒转时间，格式 年 月 日 时 分 秒
 function get_build_time()
 {
     $options = Typecho_Widget::widget('Widget_Options');
+    // 获取建站时间
     $start_Time = $options->startTime;
     if (empty($start_Time)) {
         $site_create_time = strtotime('2019-11-23 13:55:00');
     } else {
         $site_create_time = strtotime($start_Time);
     }
-
+    // 计算建站到现在的时间
     $time = time() - $site_create_time;
     if (is_numeric($time)) {
         $value = array(
-            "years" => 0, "days" => 0, "hours" => 0,
-            "minutes" => 0, "seconds" => 0,
+            'years' => 0, 'days' => 0, 'hours' => 0, 'minutes' => 0, 'seconds' => 0,
         );
         if ($time >= 31556926) {
-            $value["years"] = floor($time / 31556926);
+            $value['years'] = floor($time / 31556926);
             $time = ($time % 31556926);
         }
         if ($time >= 86400) {
-            $value["days"] = floor($time / 86400);
+            $value['days'] = floor($time / 86400);
             $time = ($time % 86400);
         }
         if ($time >= 3600) {
-            $value["hours"] = floor($time / 3600);
+            $value['hours'] = floor($time / 3600);
             $time = ($time % 3600);
         }
         if ($time >= 60) {
-            $value["minutes"] = floor($time / 60);
+            $value['minutes'] = floor($time / 60);
             $time = ($time % 60);
         }
-        $value["seconds"] = floor($time);
+        $value['seconds'] = floor($time);
 
         if ($value['years'] > 0) {
             echo $value['years'] . '年' . $value['days'] . '天' . $value['hours'] . '小时' . $value['minutes'] . '分';
@@ -601,7 +607,8 @@ function get_post_view($self)
     // 获取并增加阅读数
     $row = $db->fetchRow($db->select('views')->from('table.contents')->where('cid = ?', $cid));
     if ($self->is('single')) {
-        $db->query($db->update('table.contents')->rows(array('views' => (int) $row['views'] + 1))->where('cid = ?', $cid));
+        $vw = array('views' => (int) $row['views'] + 1);
+        $db->query($db->update('table.contents')->rows($vw)->where('cid = ?', $cid));
     }
     echo $row['views'];
 }
