@@ -58,21 +58,12 @@ class Apis
         $self->response->setStatus(200);
 
         $url = urlencode($self->request->url);
-
-        $encryption = '0x' . substr(md5(mt_rand(1655, 100860065) . time()), 8, 16);
-        $baiduSite = "https://www.baidu.com/s?wd={$url}&rsv_spt=1&rsv_iqid={$encryption}&issp=1&f=8&rsv_bp=1&rsv_idx=2&ie=utf-8&tn=baiduhome_pg&rsv_enter=1&rsv_dl=tb&rsv_n=2&rsv_sug3=1&rsv_sug2=0&rsv_btype=i&inputT=1086&rsv_sug4=1086";
-
-        $ip = mt_rand(0, 255) . '.' . mt_rand(0, 255) . '.' . mt_rand(0, 255) . '.' . mt_rand(0, 255);
-        $header[] = 'Accept-Encoding: gzip,deflate';
-        $header[] = 'Accept-Language: en-US,en;q=0.8';
-        $header[] = 'CLIENT-IP: ' . $ip;
-        $header[] = 'X-FORWARDED-FOR: ' . $ip;
+        $baiduSite = 'https://www.baidu.com/s?ie=utf-8&wd=' . $url;
 
         $ch = curl_init();
         curl_setopt($ch, CURLOPT_URL, $baiduSite);
-        curl_setopt($ch, CURLOPT_HTTPHEADER, $header);
-        curl_setopt($ch, CURLOPT_REFERER, 'https://www.baidu.com/s?ie=utf-8&wd=' . $url);
-        curl_setopt($ch, CURLOPT_USERAGENT, 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/79.0.3945.79 Safari/537.36');
+        curl_setopt($ch, CURLOPT_REFERER, 'https://www.baidu.com');
+        curl_setopt($ch, CURLOPT_USERAGENT, $_SERVER['HTTP_USER_AGENT']);
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
         curl_setopt($ch, CURLOPT_ENCODING, 'gzip,deflate');
         curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, FALSE);
@@ -82,11 +73,15 @@ class Apis
         curl_close($ch);
 
         $res = str_replace([' ', "\n", "\r"], '', $output);
-        if (strpos($res, '抱歉，没有找到与') || strpos($res, '找到相关结果约0个') || strpos($res, '没有找到该URL') || strpos($res, '抱歉没有找到')) {
-            $self->response->throwJson(array('data' => '未收录', 'url' => $baiduSite));
+        if (strpos($res, '/captcha/') > 0) {
+            $self->response->throwJson(array('data' => '查询失败', 'url' => $baiduSite));
         }
 
-        $self->response->throwJson(array('data' => '已收录', 'url' => $baiduSite));
+        if (strpos($res, '抱歉，没有找到与') > 0 || strpos($res, '找到相关结果约0个') > 0 || strpos($res, '没有找到该URL') > 0 || strpos($res, '抱歉没有找到') > 0) {
+            $self->response->throwJson(array('data' => '未收录'));
+        }
+
+        $self->response->throwJson(array('data' => '已收录'));
     }
 
     // 推送到百度收录

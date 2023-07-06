@@ -37,7 +37,8 @@ $(document).ready(function () {
 });
 
 // 百度收录检测
-$(document).ready(function () {
+
+function test_baidu() {
     $record = $('#baidu_record');
     if ($record.length === 0) {
         return;
@@ -50,31 +51,44 @@ $(document).ready(function () {
             url: window.location.href
         },
         success(res) {
-            if (res.data && res.data === '已收录') {
+            if (!res.data) {
+                return
+            }
+            $record.html(res.data);
+            if (res.data === '已收录') {
                 $record.css('color', '#67C23A');
-                $record.html('已收录');
-            } else {
-                $record.html('<span style="color: #E6A23C">未收录，推送中</span>');
-                const _timer = setTimeout(function () {
-                    $.ajax({
-                        url: '/apis?mod=push_baidu_record',
-                        type: 'POST',
-                        dataType: 'json',
-                        data: {
-                            domain: window.location.protocol + '//' + window.location.hostname,
-                            url: encodeURI(window.location.href)
-                        },
-                        success(res) {
-                            if (res.data.error) {
-                                $record.html('<span style="color: #F56C6C">推送失败，请检查</span>');
-                            } else {
-                                $record.html('<span style="color: #67C23A">推送成功</span>');
-                            }
-                        }
-                    });
-                    clearTimeout(_timer);
-                }, 1000);
+            }
+            else if (res.data === '查询失败') {
+                $record.css('color', '#F56C6C').attr('href', res.url);
+                $('<a href="javascript:;" onclick="push_baidu()">推送</a>').insertAfter($record);
+            }
+            else {
+                $record.css('color', '#E6A23C');
+                setTimeout(push_baidu, 1000);
             }
         }
     });
-});
+}
+
+function push_baidu() {
+    $record = $('#baidu_record');
+    $record.html('<span style="color: #E6A23C">推送中</span>');
+    $.ajax({
+        url: '/apis?mod=push_baidu_record',
+        type: 'POST',
+        dataType: 'json',
+        data: {
+            domain: window.location.protocol + '//' + window.location.hostname,
+            url: encodeURI(window.location.href)
+        },
+        success(res) {
+            if (res.data.error) {
+                $record.html('<span style="color: #F56C6C">推送失败，请检查</span>');
+            } else {
+                $record.html('<span style="color: #67C23A">推送成功</span>');
+            }
+        }
+    });
+}
+
+$(document).ready(test_baidu);
