@@ -608,7 +608,9 @@ function on_up_post()
 {
     $options = Typecho_Widget::widget('Widget_Options');
     $sticky = $options->sticky; //置顶的文章cid，按照排序输入, 请以半角逗号或空格分隔
-    if (!empty($sticky)) {
+    $sticky_cids = explode(',', strtr($sticky, ' ', ',')); //分割cid
+    $sticky_cids = array_filter($sticky_cids); //去除空白
+    if (!empty($sticky_cids)) {
         echo '
             <article id="top-article" class="post top-article">
                 <div class="featured" title="置顶文章">
@@ -618,7 +620,6 @@ function on_up_post()
                     <div class="top-article-slide">
                         <ul class="top-article-slide-list js-slide-list">
         ';
-        $sticky_cids = explode(',', strtr($sticky, ' ', ',')); //分割cid
         $db = Typecho_Db::get(); //获取数据库连接
         $sticky_post = $db->fetchAll(
             $db->select()->from('table.contents')
@@ -694,7 +695,7 @@ function add_custom_footer()
     }
 }
 
-// ICP备案
+// 工信部备案
 function add_icp_code()
 {
     $options = Typecho_Widget::widget('Widget_Options');
