@@ -44,7 +44,7 @@ function test_baidu() {
         return;
     }
     $.ajax({
-        url: '/apis?mod=test_baidu_record',
+        url: Waxyz.apiPath + '?mod=test_baidu_record',
         type: 'POST',
         dataType: 'json',
         data: {
@@ -74,7 +74,7 @@ function push_baidu() {
     $record = $('#baidu_record');
     $record.html('<span style="color: #E6A23C">推送中</span>');
     $.ajax({
-        url: '/apis?mod=push_baidu_record',
+        url: Waxyz.apiPath + '?mod=push_baidu_record',
         type: 'POST',
         dataType: 'json',
         data: {

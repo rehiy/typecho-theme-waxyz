@@ -38,10 +38,10 @@
                         </div>
                         <div class="pull-right tag-list post-permalink">
                             <?php if ($this->options->zzBaiduToken) : ?>
-                                <a id="baidu_record" target="_blank">收录查询中</a> |
+                                <a id="baidu_record" target="_blank">收录查询中</a> &nbsp;|
                             <?php endif; ?>
                             <?php if ($this->user->uid == $this->authorId) : ?>
-                                <a href="<?php $this->options->adminUrl(); ?>write-post.php?cid=<?php echo $this->cid; ?>" target="_blank">编辑文章</a> |
+                                <a href="<?php $this->options->adminUrl(); ?>write-post.php?cid=<?php echo $this->cid; ?>" target="_blank">编辑文章</a> &nbsp;|
                             <?php endif; ?>
                             修改时间：<?php echo date('Y-m-d H:i', $this->modified); ?>
                         </div>

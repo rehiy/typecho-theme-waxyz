@@ -594,23 +594,13 @@ function get_category_id($slug)
     return $postnum['mid'];
 }
 
-// 阅读统计
+// 获取阅读数
 function get_post_view($self)
 {
     $cid = $self->cid;
     $db = Typecho_Db::get();
-    $prefix = $db->getPrefix();
-    // 自动添加统计字段
-    if (!array_key_exists('views', $db->fetchRow($db->select()->from('table.contents')))) {
-        $db->query('ALTER TABLE `' . $prefix . 'contents` ADD `views` INT(10) DEFAULT 0;');
-    }
-    // 获取并增加阅读数
-    $row = $db->fetchRow($db->select('views')->from('table.contents')->where('cid = ?', $cid));
-    if ($self->is('single')) {
-        $vw = array('views' => (int) $row['views'] + 1);
-        $db->query($db->update('table.contents')->rows($vw)->where('cid = ?', $cid));
-    }
-    echo $row['views'];
+    $row = $db->fetchRow($db->select()->from('table.contents')->where('cid = ?', $cid));
+    echo $row['views'] ?? '0';
 }
 
 // 文章置顶

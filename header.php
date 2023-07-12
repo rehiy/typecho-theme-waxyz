@@ -42,5 +42,17 @@
 
 <body>
 
+    <?php
+    $Waxyz = [
+        'cid' => $this->cid ?? 0,
+        'single' => $this->is('single'),
+        'zzBaidu' => $this->options->zzBaiduToken == '',
+        'apiPath' => '/apis',
+    ];
+    ?>
+    <script type="text/javascript">
+        var Waxyz = <?php echo json_encode($Waxyz); ?>
+    </script>
+
     <?php include __DIR__ . '/include/loading.html'; ?>
     <?php include __DIR__ . '/include/navigation.php'; ?>

@@ -54,7 +54,7 @@
 <?php endif; ?>
 
 <!--公共脚本-->
-<script src="<?php $this->options->themeUrl('assets/global.js?v18.12'); ?>"></script>
+<script src="<?php $this->options->themeUrl('assets/global.js?v18.13'); ?>"></script>
 
 <!--鼠标特效-->
 <?php if ($this->options->mouseClickEffects) : ?>
@@ -76,6 +76,16 @@
         }, 2000);
     </script>
 <?php endif; ?>
+
+<!--页面浏览统计-->
+<script type="text/javascript">
+    if (Waxyz.single && Waxyz.cid) {
+        $.ajax({
+            url: Waxyz.apiPath + '?mod=handle_post_view&cid=' + Waxyz.cid,
+            type: 'GET',
+        });
+    }
+</script>
 
 <!--网站加载动画-->
 <?php if ($this->options->loadHtml) : ?>

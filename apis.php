@@ -17,39 +17,88 @@ class Apis
     static function illegal($self)
     {
         $self->response->setStatus(200);
-        $self->response->throwJson(array('code' => 0, 'data' => '非法请求，已屏蔽！'));
+        $self->response->throwJson(array('code' => 0, 'data' => '非法请求'));
+    }
+
+    // 增加阅读数
+    static function handle_post_view($self)
+    {
+        $self->response->setStatus(200);
+
+        $cid = $self->request->cid;
+
+        // sql注入校验
+        if (!preg_match('/^\d+$/',  $cid)) {
+            $self->response->throwJson(array('code' => 0, 'data' => '参数错误'));
+        }
+
+        // 判断来源信息
+        if (stripos($_SERVER['HTTP_REFERER'], $cid) === false) {
+            $self->response->throwJson(array('code' => 0, 'data' => '非法请求'));
+        }
+
+        // 获取文章信息
+        $db = Typecho_Db::get();
+        $row = $db->fetchRow($db->select()->from('table.contents')->where('cid = ?', $cid));
+        if (empty($row)) {
+            $self->response->throwJson(array('code' => 0, 'data' => '文章不存在'));
+        }
+
+        // 添加统计字段
+        if (!array_key_exists('views', $row)) {
+            $prefix = $db->getPrefix();
+            $db->query('ALTER TABLE `' . $prefix . 'contents` ADD `views` INT(10) DEFAULT 0;');
+        }
+
+        // 增加阅读数
+        $vw = array('views' => 1 + $row['views']);
+        $rs = $db->query($db->update('table.contents')->rows($vw)->where('cid = ?', $cid));
+
+        $self->response->throwJson(array('code' => $rs, 'data' => $vw['views']));
     }
 
     // 点赞和取消点赞
-    static function handle_agree($self)
+    static function handle_post_agree($self)
     {
         $self->response->setStatus(200);
 
         $cid = $self->request->cid;
         $type = $self->request->type;
 
-        /* sql注入校验 */
+        // sql注入校验
         if (!preg_match('/^\d+$/',  $cid)) {
-            return $self->response->throwJson(array('code' => 0, 'data' => '参数错误'));
+            $self->response->throwJson(array('code' => 0, 'data' => '参数错误'));
         }
-        /* sql注入校验 */
         if (!preg_match('/^[agree|disagree]+$/', $type)) {
-            return $self->response->throwJson(array('code' => 0, 'data' => '参数错误'));
+            $self->response->throwJson(array('code' => 0, 'data' => '参数错误'));
         }
 
+        // 获取文章信息
         $db = Typecho_Db::get();
-        $row = $db->fetchRow($db->select('agree')->from('table.contents')->where('cid = ?', $cid));
-        if (sizeof($row) > 0) {
-            $up = $type === 'agree' ? 1 : -1;
-            $rw = array('agree' => (int)$row['agree'] + $up);
-            $db->query($db->update('table.contents')->rows($rw)->where('cid = ?', $cid));
-            $self->response->throwJson(array(
-                'code' => 1,
-                'data' => array('agree' => number_format($db->fetchRow($db->select('agree')->from('table.contents')->where('cid = ?', $cid))['agree']))
-            ));
+        $row = $db->fetchRow($db->select()->from('table.contents')->where('cid = ?', $cid));
+        if (empty($row)) {
+            $self->response->throwJson(array('code' => 0, 'data' => '文章不存在'));
         }
 
-        $self->response->throwJson(array('code' => 0, 'data' => null));
+        // 添加点赞字段
+        if (!array_key_exists('agree', $row)) {
+            $prefix = $db->getPrefix();
+            $db->query('ALTER TABLE `' . $prefix . 'contents` ADD `agree` INT(10) DEFAULT 0;');
+        }
+
+        // 增加点赞数
+        $rw = array('agree' =>  $row['views'] + ($type === 'agree' ? 1 : -1));
+        $rs = $db->query($db->update('table.contents')->rows($rw)->where('cid = ?', $cid));
+        if (!$rs) {
+            $self->response->throwJson(array('code' => 0, 'data' => '操作失败'));
+        }
+
+        // 返回最新点赞数
+        $new = $db->fetchRow($db->select('agree')->from('table.contents')->where('cid = ?', $cid));
+        $self->response->throwJson(array(
+            'code' => 1,
+            'data' => array('agree' => number_format($new['agree']))
+        ));
     }
 
     // 查询百度是否收录
