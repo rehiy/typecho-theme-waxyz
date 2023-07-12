@@ -54,40 +54,9 @@
 <?php endif; ?>
 
 <!--公共脚本-->
-<script src="<?php $this->options->themeUrl('assets/global.js?v18.13'); ?>"></script>
+<script src="<?php $this->options->themeUrl('assets/global.js?v18.17'); ?>"></script>
 
-<!--鼠标特效-->
-<?php if ($this->options->mouseClickEffects) : ?>
-    <script type="text/javascript" src="<?php $this->options->themeUrl('assets/mouse.js'); ?>"></script>
-<?php endif; ?>
-
-<!--置顶文章滚动支持-->
-<?php if (!empty($this->options->sticky) && count(explode(',', strtr($this->options->sticky, ' ', ','))) > 1) : ?>
-    <script type="text/javascript">
-        setInterval(function() {
-            var $parent = $('.js-slide-list');
-            var $first = $parent.find('li:first');
-            var height = $first.height();
-            $first.animate({
-                marginTop: -height + 'px'
-            }, 500, function() {
-                $first.css('marginTop', 0).appendTo($parent);
-            });
-        }, 2000);
-    </script>
-<?php endif; ?>
-
-<!--页面浏览统计-->
-<script type="text/javascript">
-    if (Waxyz.single && Waxyz.cid) {
-        $.ajax({
-            url: Waxyz.apiPath + '?mod=handle_post_view&cid=' + Waxyz.cid,
-            type: 'GET',
-        });
-    }
-</script>
-
-<!--网站加载动画-->
+<!--关闭加载动画-->
 <?php if ($this->options->loadHtml) : ?>
     <script type="text/javascript">
         $("#loading").fadeOut(500);

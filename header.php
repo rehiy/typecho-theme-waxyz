@@ -45,8 +45,10 @@
     <?php
     $Waxyz = [
         'cid' => $this->cid ?? 0,
-        'single' => $this->is('single'),
-        'zzBaidu' => $this->options->zzBaiduToken == '',
+        'isSingle' => $this->is('single'),
+        'archiveType' => $this->archiveType,
+        'sticky' => $this->options->sticky,
+        'mouseClickEffects' => $this->options->mouseClickEffects,
         'apiPath' => '/apis',
     ];
     ?>
