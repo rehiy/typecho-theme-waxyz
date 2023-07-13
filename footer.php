@@ -54,7 +54,7 @@
 <?php endif; ?>
 
 <!--公共脚本-->
-<script src="<?php $this->options->themeUrl('assets/global.js?v18.17'); ?>"></script>
+<script src="<?php $this->options->themeUrl('assets/global.js?v1.2.17'); ?>"></script>
 
 <!--关闭加载动画-->
 <?php if ($this->options->loadHtml) : ?>

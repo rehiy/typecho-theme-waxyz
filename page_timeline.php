@@ -10,63 +10,7 @@ if (!defined('__TYPECHO_ROOT_DIR__')) exit;
 $this->need('header.php');
 ?>
 
-<style type="text/css">
-    .post-content ul::before {
-        content: ' ';
-        height: 100%;
-        width: 0.4em;
-        background-color: #F4F4F4;
-        position: absolute;
-        top: 0;
-        left: 1.4em;
-        /*z-index: -1;*/
-    }
-
-    .post-content li {
-        display: inline-block;
-        margin: 1em 0;
-        vertical-align: top;
-        background-color: #F4F4F4;
-        padding: 1em;
-        width: 100%;
-        border-radius: 10px;
-    }
-
-    .post-content li::before {
-        content: ' ';
-        width: 1.4em;
-        height: 1.4em;
-        position: absolute;
-        border-radius: 50%;
-        left: 0.9em;
-        z-index: 1;
-        box-sizing: border-box;
-        background: #ff837e;
-        border: 4px solid #ffffff;
-    }
-
-    .post-content li:hover:before {
-        background: #F4645F;
-    }
-
-    .post-content strong {
-        display: block;
-        margin-bottom: 0.2em;
-        color: #F4645F;
-    }
-
-    .post-content strong::before {
-        content: " ";
-        left: 1.5em;
-        width: 1.5em;
-        border: solid transparent;
-        position: absolute;
-        pointer-events: none;
-        border-right-color: #F4F4F4;
-        border-width: 10px;
-
-    }
-</style>
+<link rel="stylesheet" href="<?php $this->options->themeUrl('assets/page_timeline.css?v1.0.0'); ?>">
 
 <section class="content-wrap">
     <div class="container">

@@ -1,0 +1,52 @@
+.post-head {
+    border-bottom: 1px solid #ebebeb;
+}
+
+.post-head h2 {
+    margin: 0 0 5px 0;
+    font-size: 1.6em;
+    text-align: left;
+}
+
+.post-content ul {
+    list-style: none;
+    margin: 0 auto;
+    padding: 0;
+}
+
+.post-content ul li {
+    margin: 0;
+    padding: 6px;
+}
+
+.post-content ul li a {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    height: 96px;
+    border: 1px solid #DEDEDC;
+    border-radius: 8px;
+    transition: all .2s ease 0s;
+}
+
+.post-content ul li a:hover {
+    text-decoration: none;
+    box-shadow: rgba(0, 0, 0, .2) 0 1px 3px, rgba(157, 182, 200, .1) 0 1px 20px;
+}
+
+.post-content ul li a img {
+    width: 96px;
+    height: 96px;
+}
+
+.post-content ul li a div,
+.post-content ul li a div p {
+    margin: 4px 0 4px 8px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.post-content ul li a div p span {
+    color: #666;
+}
