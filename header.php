@@ -56,5 +56,5 @@
         var Waxyz = <?php echo json_encode($Waxyz); ?>
     </script>
 
-    <?php include __DIR__ . '/include/loading.html'; ?>
-    <?php include __DIR__ . '/include/navigation.php'; ?>
+    <?php $this->need('include/loading.html'); ?>
+    <?php $this->need('include/navigation.php'); ?>

@@ -2,7 +2,7 @@
 if (!defined('__TYPECHO_ROOT_DIR__')) exit;
 
 if ($this->request->getPathInfo() == '/apis') {
-    include __DIR__ . '/apis.php';
+    $this->need('apis.php');
 }
 
 $this->need('header.php');
