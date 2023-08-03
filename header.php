@@ -42,17 +42,17 @@
 
 <body>
 
-    <?php
-    $Waxyz = [
-        'cid' => $this->cid ?? 0,
-        'isSingle' => $this->is('single'),
-        'archiveType' => $this->archiveType,
-        'sticky' => $this->options->sticky,
-        'mouseClickEffects' => $this->options->mouseClickEffects,
-        'apiPath' => '/apis',
-    ];
-    ?>
     <script type="text/javascript">
+        <?php
+        $Waxyz = [
+            'cid' => $this->cid ?? 0,
+            'isSingle' => $this->is('single'),
+            'archiveType' => $this->archiveType,
+            'sticky' => $this->options->sticky,
+            'mouseClickEffects' => $this->options->mouseClickEffects,
+            'apiPath' => '/apis',
+        ];
+        ?>
         var Waxyz = <?php echo json_encode($Waxyz); ?>
     </script>
 
