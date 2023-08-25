@@ -43,7 +43,7 @@ $(function () {
 
 $(function () {
     $('img').lazyload({
-        placeholder: '/usr/themes/waxyz/assets//loading.gif',
+        placeholder: '/usr/themes/waxyz/assets/loading.gif',
         effect: 'fadeIn'
     });
 });

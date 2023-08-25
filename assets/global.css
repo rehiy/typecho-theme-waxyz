@@ -1280,8 +1280,10 @@ th {
 
 .page-navigator {
     list-style: none;
+    background: rgba(255, 255, 255, 0.8);
+    border-radius: 5px;
     margin: 25px 0;
-    padding: 0;
+    padding: 8px;
     text-align: center;
 }
 
@@ -1993,14 +1995,12 @@ th {
 ====================================================*/
 
 .copyright {
-    /*background: #ebebeb;*/
+    background: rgba(255, 255, 255, 0.8);
     font-size: 13px;
-    /*font-weight: 600;*/
     text-align: center;
     color: #7b7b7b;
     padding-top: 28px;
     padding-bottom: 28px;
-    /*border-top: 1px solid #303030;*/
 }
 
 .copyright span {
