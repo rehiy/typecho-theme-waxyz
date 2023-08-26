@@ -665,10 +665,17 @@ function on_top_text()
 function add_background_media($self)
 {
     $options = Typecho_Widget::widget('Widget_Options');
-    $list = explode(',', $options->backgroundIndex);
-    if (empty(array_filter($list, [$self, 'is']))) {
+    if ($options->backgroundIndex == '0') {
         return;
     }
+    // 如果不是全站则判断
+    if ($options->backgroundIndex != 'all') {
+        $list = explode(',', $options->backgroundIndex);
+        if (empty(array_filter($list, [$self, 'is']))) {
+            return;
+        }
+    }
+    // 如果设置了背景则加载
     if ($media = trim($options->backgroundMedia)) {
         $media_list = explode("\n", $media);
         $media_url = $media_list[array_rand($media_list)];
