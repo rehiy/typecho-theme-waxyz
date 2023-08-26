@@ -387,13 +387,18 @@ function themeConfig($form)
     $backgroundIndex = new Typecho_Widget_Helper_Form_Element_Radio(
         'backgroundIndex',
         array(
-            '0' => '全部',
-            '1' => '仅首页',
-            '2' => '首页及分类页'
+            '0' => '关闭',
+            'all' => '全站',
+            'index' => '仅首页',
+            'index,category' => '+分类页',
+            'index,category,tag' => '+标签页',
+            'index,category,tag,archive' => '+归档页',
+            'index,category,tag,archive,post' => '+内容页',
+            'index,category,tag,archive,post,single' => '+单页',
         ),
         '0',
-        _t('多媒体背景页面'),
-        _t('显示多媒体背景的页面')
+        _t('多媒体背景开关'),
+        _t('选择显示多媒体背景的页面，`+` 表示包含首页和前面选项')
     );
     $form->addInput($backgroundIndex);
 
@@ -660,11 +665,9 @@ function on_top_text()
 function add_background_media($self)
 {
     $options = Typecho_Widget::widget('Widget_Options');
-    if ($options->backgroundIndex == '1' && !$self->is('index')) {
-        return; // 仅首页显示
-    }
-    if ($options->backgroundIndex == '2' && !($self->is('index') || $self->is('category'))) {
-        return; // 仅首页显示
+    $list = explode(',', $options->backgroundIndex);
+    if (empty(array_filter($list, [$self, 'is']))) {
+        return;
     }
     if ($media = trim($options->backgroundMedia)) {
         $media_list = explode("\n", $media);
