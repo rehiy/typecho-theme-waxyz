@@ -10,7 +10,7 @@
 if (!defined('__TYPECHO_ROOT_DIR__')) exit;
 
 [$media_type, $media_url] = explode(',', $media_url, 2);
-[$media_type, $media_url]  = [trim($media_type), trim($media_url)];
+[$media_type, $media_url] = [trim($media_type), trim($media_url)];
 ?>
 
 <?php if (preg_match('/image/i', $media_type)) : ?>

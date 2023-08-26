@@ -59,7 +59,7 @@
 <!--关闭加载动画-->
 <?php if ($this->options->loadHtml) : ?>
     <script type="text/javascript">
-        $("#loading").fadeOut(500);
+        $('#loading').fadeOut(500);
     </script>
 <?php endif; ?>
 

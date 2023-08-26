@@ -118,7 +118,7 @@ function themeConfig($form)
             '0' => '关闭'
         ),
         '1',
-        _t('站点加载动画'),
+        _t('预加载动画'),
         _t('是否启用等待站点加载完毕的动画')
     );
     $form->addInput($loadHtml);
