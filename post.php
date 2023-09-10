@@ -33,8 +33,7 @@
 
                     <footer class="post-footer clearfix">
                         <div class="pull-left tag-list">
-                            <i class="glyphicon glyphicon-folder-open"></i>
-                            <?php $this->tags(' , ', true, 'none'); ?>
+                            <i class="glyphicon glyphicon-tags"></i> <?php $this->tags(' , ', true, 'none'); ?>
                         </div>
                         <div class="pull-right tag-list post-permalink">
                             <?php if ($this->options->zzBaiduToken) : ?>

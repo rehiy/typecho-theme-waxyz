@@ -52,8 +52,7 @@
                             </div>
                             <footer class="post-footer clearfix">
                                 <div class="pull-left tag-list">
-                                    <i class="glyphicon glyphicon-folder-open"></i>
-                                    <?php $this->tags(' , ', true, 'none'); ?>
+                                    <i class="glyphicon glyphicon-tags"></i> <?php $this->tags(' , ', true, 'none'); ?>
                                 </div>
                                 <div class="pull-right post-permalink">
                                     <a href="<?php $this->permalink() ?>#comments" class="btn btn-default">前往评论</a>
@@ -87,8 +86,8 @@
                                     <div class="excerpt-info">
                                         <div class="excerpt-item"><span class="glyphicon glyphicon-user" aria-hidden="true"></span><a href="<?php $this->author->permalink(); ?>"><?php $this->author(); ?></a></div>
                                         <div class="excerpt-item"><span class="glyphicon glyphicon-calendar" aria-hidden="true"></span><?php $this->date('Y-m-d'); ?></div>
-                                        <!--div class="excerpt-item"><span class="glyphicon glyphicon-tag" aria-hidden="true"></span><?php $this->category(','); ?></div-->
-                                        <div class="excerpt-item"><span class="glyphicon glyphicon-folder-open" aria-hidden="true"></span><?php $this->tags(' , ', true, 'none'); ?></div>
+                                        <div class="excerpt-item"><span class="glyphicon glyphicon-folder-open" aria-hidden="true"></span><?php $this->category(','); ?></div>
+                                        <div class="excerpt-item"><span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span><?php get_post_view($this); ?></div>
                                     </div>
                                     <div class="excerpt-content">
                                         <?php if (array_key_exists('info', unserialize($this->___fields()))) {
@@ -98,6 +97,9 @@
                                         } ?>
                                         <a href="<?php $this->permalink() ?>" style="white-space:nowrap;"> - 阅读更多 - </a>
                                     </div>
+                                    <!--div class="excerpt-info">
+                                        <div class="excerpt-item"><span class="glyphicon glyphicon-tags" aria-hidden="true"></span> <?php $this->tags(' , ', true, 'none'); ?></div>
+                                    </div-->
                                 </div>
                             </div>
                         </article>
@@ -111,8 +113,8 @@
 
             <?php $this->need('sidebar.php'); ?>
 
-        </div class="row">
-    </div class="container">
+        </div>
+    </div>
 </section>
 
 <?php $this->need('footer.php'); ?>
