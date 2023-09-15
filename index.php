@@ -5,8 +5,8 @@
  * 支持主题自定义、短代码、文章置顶/标星、公告、CDN切换等功能。<br/>
  *
  * @package Waxyz
- * @author Rehiy Wang
- * @version 2022.11.27
+ * @author 若海
+ * @version 2023.09.10
  * @link https://www.rehiy.com
  */
 
