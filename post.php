@@ -29,6 +29,11 @@
                             </div>
                         <?php endif; ?>
                         <?php echo get_content($this->content); ?>
+                        <div style="display: none">
+                            文章作者: <a href="<?php $this->author->permalink(); ?>"><?php $this->author(); ?></a>；
+                            原文链接: <a href="<?php echo $this->permalink; ?>"><?php echo $this->permalink; ?></a>；
+                            转载需声明来自<a href="<?php echo $this->options->index; ?>"><?php echo $this->options->index; ?></a>！
+                        </div>
                     </section>
 
                     <footer class="post-footer clearfix">
