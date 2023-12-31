@@ -596,7 +596,7 @@ function get_category_id($slug)
 {
     $db = Typecho_Db::get();
     $postnum = $db->fetchRow($db->select()->from('table.metas')->where('slug=?', $slug)->where('type=?', 'category'));
-    return $postnum['mid'];
+    return $postnum['mid'] ?? '0';
 }
 
 // 获取阅读数
