@@ -10,8 +10,12 @@
 $name = 'waxyz';
 
 $db = Typecho_Db::get();
-$themeData = $db->fetchRow($db->select()->from('table.options')->where('name = ?', 'theme:' . $name))['value'];
-$themeBackup = $db->fetchRow($db->select()->from('table.options')->where('name = ?', 'themeBackup:' . $name))['value'];
+
+$themeData = $db->fetchRow($db->select()->from('table.options')->where('name = ?', 'theme:' . $name));
+$themeData = $themeData['value'] ?? null;
+
+$themeBackup = $db->fetchRow($db->select()->from('table.options')->where('name = ?', 'themeBackup:' . $name));
+$themeBackup = $themeBackup['value'] ?? null;
 
 if (isset($_POST) && $themeData) {
     // 备份配置
