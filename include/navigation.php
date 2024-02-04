@@ -45,10 +45,14 @@ if (!defined('__TYPECHO_ROOT_DIR__')) exit;
                     <a href="<?php $this->options->siteUrl(); ?>"><?php _e('首页'); ?></a>
                 </li>
 
-                <?php $this->widget('Widget_Metas_Category_List', 'current=' . get_category_id($this->getArchiveSlug()))->to($category); ?>
-
                 <!-- 展开分类菜单 -->
                 <?php
+                $category_id = 'index';
+                if (!$this->is('index')) {
+                    $category_id = get_category_id($this->getArchiveSlug());
+                }
+                $this->widget('Widget_Metas_Category_List', 'current=' . $category_id )->to($category);
+ 
                 if ($this->options->menuDropdown == 4) {
                     $category->listCategories();
                 } elseif ($this->options->menuDropdown == 2) {
