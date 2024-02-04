@@ -29,7 +29,7 @@ $this->need('header.php');
                     <!----全文模式开始----->
                     <?php if ($this->options->indexType == 1) : ?>
                         <article id="<?php $this->cid() ?>" class="post">
-                            <?php if (array_key_exists('star', unserialize($this->___fields()))) : ?>
+                            <?php if ($this->___fields()->__isSet('star')) : ?>
                                 <div class="featured" title="推荐文章">
                                     <i class="glyphicon glyphicon-star"></i>
                                 </div>
@@ -44,7 +44,7 @@ $this->need('header.php');
                                 </div>
                                 <div class="post-border"></div>
                             </div>
-                            <?php if (array_key_exists('img', unserialize($this->___fields()))) : ?>
+                            <?php if ($this->___fields()->__isSet('img')) : ?>
                                 <div class="featured-media">
                                     <a href="<?php $this->permalink() ?>"><img src="<?php $this->fields->img(); ?>" alt="<?php $this->title() ?>"></a>
                                 </div>
@@ -70,11 +70,11 @@ $this->need('header.php');
                     <!----摘要模式开始----->
                     <?php if ($this->options->indexType == 0) : ?>
                         <article id="<?php $this->cid() ?>" class="post" style="padding:25px 10px;">
-                            <?php if (array_key_exists('star', unserialize($this->___fields()))) : ?>
+                            <?php if ($this->___fields()->__isSet('star')) : ?>
                                 <div class="featured" title="推荐文章"> <i class="glyphicon glyphicon-star"></i></div>
                             <?php endif; ?>
                             <div class="excerpt">
-                                <?php if (array_key_exists('img', unserialize($this->___fields()))) : ?>
+                                <?php if ($this->___fields()->__isSet('img')) : ?>
                                     <div class="excerpt-img">
                                         <img class="lazyload" src="'<?php $this->options->lazyloadGif(); ?>" data-original="<?php $this->fields->img(); ?>" alt="<?php $this->title() ?>" title="<?php $this->title() ?>">
                                     </div>
@@ -96,7 +96,7 @@ $this->need('header.php');
                                         <div class="excerpt-item"><span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span><?php get_post_view($this); ?></div>
                                     </div>
                                     <div class="excerpt-content">
-                                        <?php if (array_key_exists('info', unserialize($this->___fields()))) {
+                                        <?php if ($this->___fields()->__isSet('info')) {
                                             $this->fields->info();
                                         } else {
                                             echo get_excerpt($this->text, 75, '');
