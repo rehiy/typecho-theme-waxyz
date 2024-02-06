@@ -536,7 +536,7 @@ function get_first_img($content)
     // 获取第一张图
     if ($options->findFirstImage) {
         preg_match_all('/\<img.*?src\=\"(.*?)\".*?[^>]*>/i', $content, $match);
-        if ($match[1][0]) {
+        if (isset($match[1][0])) {
             return $match[1][0];
         }
     }
@@ -637,7 +637,7 @@ function on_up_post()
             foreach ($sticky_post as $val) {
                 $val = Typecho_Widget::widget('Widget_Abstract_Contents')->push($val);
                 $post_title = htmlspecialchars($val['title']);
-                $permalink = $val['permalink'];
+                $permalink = $val['permalink'] ?? '';
                 $time = date('Y年m月d日', $val["created"]);
                 echo '<li class=""><span><a href="' . $permalink . '">《' . $post_title . '》</a></span><span style="color: #959595;">（' . $time . '）</span></li>';
             }
