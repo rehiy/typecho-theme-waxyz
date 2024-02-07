@@ -21,13 +21,13 @@ if (!defined('__TYPECHO_ROOT_DIR__')) exit;
 
     <script type="text/javascript">
         $('.content-wrap').animate({
-            'opacity': 0.8
-        }, 1500)
-        $('.main-navigation').animate({
             'opacity': 0.9
         }, 1500)
+        $('.main-navigation').animate({
+            'opacity': 0.95
+        }, 1500)
         $('.background-media').animate({
-            'opacity': 1
+            'opacity': 0.999
         }, 1500)
     </script>
 
@@ -57,13 +57,13 @@ if (!defined('__TYPECHO_ROOT_DIR__')) exit;
         });
         player.on('loadeddata', (event) => {
             $('.content-wrap').animate({
-                'opacity': 0.8
-            }, 1500)
-            $('.main-navigation').animate({
                 'opacity': 0.9
             }, 1500)
+            $('.main-navigation').animate({
+                'opacity': 0.95
+            }, 1500)
             $('.background-media, .background-ctrls').animate({
-                'opacity': 1
+                'opacity': 0.999
             }, 1500)
             $('.background-ctrls .btn-volume').click(function() {
                 player.muted() ? player.muted(false) : player.muted(true)
