@@ -2061,6 +2061,12 @@ th {
     left: auto;
 }
 
+.background-media img {
+    min-width: 100%;
+    min-height: 100%;
+    object-fit: cover;
+}
+
 .background-ctrls {
     display: flex;
     flex-direction: column;
