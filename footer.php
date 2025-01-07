@@ -36,6 +36,7 @@
     <script src="//<?php echo $this->options->CDN; ?>/ajax/libs/video.js/8.0.4/video.min.js"></script>
     <script src="//<?php echo $this->options->CDN; ?>/ajax/libs/viewerjs/1.11.3/viewer.min.js"></script>
 <?php endif; ?>
+<script src="<?php $this->options->themeUrl('library/theia-sticky-sidebar.min.js'); ?>"></script>
 
 <!--代码高亮-->
 <?php if ($this->options->codeHighlightControl) : ?>
@@ -68,6 +69,15 @@
 
 <!--自定义尾部代码-->
 <?php add_custom_footer(); ?>
+
+<script type="text/javascript">
+    jQuery(document).ready(function() {
+        jQuery('#Sidebar').theiaStickySidebar({
+            // Settings
+            additionalMarginTop: 30
+        });
+    });
+</script>
 
 <?php $this->footer(); ?>
 </body>
