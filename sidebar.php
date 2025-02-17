@@ -1,6 +1,6 @@
 <?php if (!defined('__TYPECHO_ROOT_DIR__')) exit; ?>
 
-<aside class="col-md-4 sidebar">
+<aside class="col-md-4 sidebar" id="Sidebar">
 
   <!-- start Search widget -->
   <?php if (!empty($this->options->sidebarBlock) && in_array('ShowSearch', $this->options->sidebarBlock)) : ?>
