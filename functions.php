@@ -635,11 +635,11 @@ function on_up_post()
         );
         if ($sticky_post) {
             foreach ($sticky_post as $val) {
-                $val = Typecho_Widget::widget('Widget_Abstract_Contents')->push($val);
-                $post_title = htmlspecialchars($val['title']);
-                $permalink = $val['permalink'] ?? '';
+                $item = Typecho_Widget::widget('Widget_Abstract_Contents');
+                $item->push($val);
                 $time = date('Y年m月d日', $val["created"]);
-                echo '<li class=""><span><a href="' . $permalink . '">《' . $post_title . '》</a></span><span style="color: #959595;">（' . $time . '）</span></li>';
+                $post_title = htmlspecialchars($val['title']);
+                echo '<li class=""><span><a href="' . $item->permalink . '">《' . $post_title . '》</a></span><span style="color: #959595;">（' . $time . '）</span></li>';
             }
         }
         echo '</ul></div></div></article>';
