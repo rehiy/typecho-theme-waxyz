@@ -613,8 +613,14 @@ function on_up_post()
 {
     $options = Typecho_Widget::widget('Widget_Options');
     $sticky = $options->sticky; //置顶的文章cid，按照排序输入, 请以半角逗号或空格分隔
-    $sticky_cids = explode(',', strtr($sticky, ' ', ',')); //分割cid
-    $sticky_cids = array_filter($sticky_cids); //去除空白
+    // 检查 $sticky 是否为 null 或空字符串
+    if (empty($sticky)) {
+        $sticky_cids = array();
+    } else {
+        $sticky_cids = explode(',', strtr($sticky, ' ', ',')); //分割cid
+        $sticky_cids = array_filter($sticky_cids); //去除空白
+    }
+    
     if (!empty($sticky_cids)) {
         echo '
             <article id="top-article" class="post top-article">
