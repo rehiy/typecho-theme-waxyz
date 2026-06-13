@@ -3,6 +3,9 @@
 <div id="comments">
     <?php
     $friendCommentCoids = array_values(array_unique(array_map('intval', $GLOBALS['friendCommentCoids'] ?? [])));
+    if (function_exists('getFriendCommentCoids')) {
+        $friendCommentCoids = array_values(array_unique(array_merge($friendCommentCoids, getFriendCommentCoids($this->cid))));
+    }
     $this->comments()->to($comments);
     ?>
     <?php if (!empty($friendCommentCoids)) : ?>

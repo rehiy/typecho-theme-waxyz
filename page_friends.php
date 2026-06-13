@@ -50,16 +50,8 @@ function getFriendsHtml($content, $cid)
 
 function getFriendsFromComments($cid)
 {
-    $db = Typecho_Db::get();
-    // Direct DB query keeps approved friend replies independent from comment pagination.
-    $comments = $db->fetchAll($db->select('coid', 'text')->from('table.comments')
-        ->where('cid = ?', $cid)
-        ->where('type = ?', 'comment')
-        ->where('status = ?', 'approved')
-        ->order('created', Typecho_Db::SORT_DESC));
-
     $friends = [];
-    foreach ($comments as $comment) {
+    foreach (getFriendCommentRows($cid) as $comment) {
         $friend = parseFriendComment($comment['text']);
         if (!empty($friend['name']) && !empty($friend['link'])) {
             $friends[] = $friend;
@@ -68,6 +60,30 @@ function getFriendsFromComments($cid)
     }
 
     return $friends;
+}
+
+function getFriendCommentCoids($cid)
+{
+    $coids = [];
+    foreach (getFriendCommentRows($cid) as $comment) {
+        $friend = parseFriendComment($comment['text']);
+        if (!empty($friend['name']) && !empty($friend['link'])) {
+            $coids[] = (int) $comment['coid'];
+        }
+    }
+
+    return $coids;
+}
+
+function getFriendCommentRows($cid)
+{
+    $db = Typecho_Db::get();
+    // Direct DB query keeps approved friend replies independent from comment pagination.
+    return $db->fetchAll($db->select('coid', 'text')->from('table.comments')
+        ->where('cid = ?', $cid)
+        ->where('type = ?', 'comment')
+        ->where('status = ?', 'approved')
+        ->order('created', Typecho_Db::SORT_DESC));
 }
 
 function parseFriendComment($text)
