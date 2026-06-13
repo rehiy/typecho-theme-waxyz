@@ -1,7 +1,40 @@
 <?php if (!defined('__TYPECHO_ROOT_DIR__')) exit; ?>
 
 <div id="comments">
-    <?php $this->comments()->to($comments); ?>
+    <?php
+    $friendCommentCoids = array_values(array_unique(array_map('intval', $GLOBALS['friendCommentCoids'] ?? [])));
+    $this->comments()->to($comments);
+    ?>
+    <?php if (!empty($friendCommentCoids)) : ?>
+        <style>
+            <?php foreach ($friendCommentCoids as $coid) : ?>
+            #li-comment-<?php echo $coid; ?>,
+            #comment-<?php echo $coid; ?> {
+                display: none !important;
+            }
+            <?php endforeach; ?>
+        </style>
+        <script>
+            (function () {
+                var coids = <?php echo json_encode($friendCommentCoids); ?>;
+                function removeFriendComments() {
+                    coids.forEach(function (coid) {
+                        var node = document.getElementById('li-comment-' + coid) || document.getElementById('comment-' + coid);
+                        if (!node) {
+                            return;
+                        }
+                        var item = node.id.indexOf('li-comment-') === 0 ? node : node.closest('li');
+                        (item || node).remove();
+                    });
+                }
+                if (document.readyState === 'loading') {
+                    document.addEventListener('DOMContentLoaded', removeFriendComments);
+                } else {
+                    removeFriendComments();
+                }
+            })();
+        </script>
+    <?php endif; ?>
 
     <?php if ($comments->have()) : ?>
         <h3><?php $this->commentsNum(_t('暂无评论'), _t('仅有一条评论'), _t('已有 %d 条评论')); ?></h3>
